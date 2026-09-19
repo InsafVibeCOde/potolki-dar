@@ -1,0 +1,11 @@
+# локальные настройки редактора и запуска
+.claude/
+.vscode/
+.idea/
+
+# служебное
+__pycache__/
+*.pyc
+Thumbs.db
+.DS_Store
+desktop.ini
