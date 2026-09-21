@@ -127,22 +127,6 @@ h1,h2,h3,.h1,.h2,.h3{
 .muted{color:var(--ink-soft)}
 .nowrap{white-space:nowrap}
 
-/* цифры — единственное место кроме CTA, где живёт золото */
-.num{
-  font-size:clamp(38px, 6vw, 60px);
-  font-weight:800;
-  line-height:1;
-  letter-spacing:-.04em;
-  color:var(--gold-deep);
-  font-variant-numeric:tabular-nums;
-}
-.dark-block .num{
-  color:transparent;
-  background:var(--gold-grad);
-  -webkit-background-clip:text;
-  background-clip:text;
-}
-
 /* --------------------------------------------------------------------------
    4. Каркас
    -------------------------------------------------------------------------- */
@@ -388,17 +372,7 @@ h1,h2,h3,.h1,.h2,.h3{
 .hero__badge > div + div{border-left:1px solid var(--border-dark); padding-left:var(--s-4)}
 
 /* --------------------------------------------------------------------------
-   8. Цифры
-   -------------------------------------------------------------------------- */
-.stats{border-block:1px solid var(--border); background:var(--bg-alt)}
-.stats__grid{display:grid; grid-template-columns:repeat(2,1fr); gap:var(--s-5) var(--s-4); padding-block:var(--s-7)}
-/* цифр три — на узких экранах последняя занимает обе колонки, без дыры справа */
-@media (max-width:899px){ .stats__grid > :last-child{grid-column:1 / -1} }
-@media (min-width:900px){ .stats__grid{grid-template-columns:repeat(3,1fr)} }
-.stat__label{margin-top:var(--s-2); font-size:14.5px; color:var(--ink-soft); line-height:1.35; max-width:22ch}
-
-/* --------------------------------------------------------------------------
-   9. Карточки
+   8. Карточки
    -------------------------------------------------------------------------- */
 .card{
   position:relative;
@@ -430,52 +404,7 @@ a.card:hover{transform:translateY(-3px); box-shadow:var(--shadow); border-color:
 }
 
 /* --------------------------------------------------------------------------
-   10. Цены — таблица кейсов
-   -------------------------------------------------------------------------- */
-.price-table{
-  background:#fff;
-  border:1px solid var(--border);
-  border-radius:var(--radius);
-  overflow:hidden;
-}
-.section--alt .price-table{background:var(--bg)}
-.price-table thead{background:var(--dark); color:var(--bg)}
-.price-table th{
-  text-align:left; padding:var(--s-4) var(--s-5);
-  font-size:12.5px; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
-}
-.price-table td{padding:var(--s-4) var(--s-5); border-top:1px solid var(--border); font-size:15.5px; vertical-align:middle}
-.price-table tbody tr{transition:background-color var(--dur) var(--ease)}
-.price-table tbody tr:hover{background:rgba(200,160,99,.06)}
-.price-table .obj{font-weight:600; color:var(--ink)}
-.price-table .obj small{display:block; font-weight:400; font-size:13.5px; color:var(--ink-soft); margin-top:3px}
-.price-table .price{font-weight:800; font-size:18px; white-space:nowrap; color:var(--ink); text-align:right}
-.price-table th:last-child{text-align:right}
-
-/* мобильная раскладка таблицы */
-@media (max-width:767px){
-  .price-table thead{display:none}
-  .price-table tr{display:grid; grid-template-columns:1fr auto; gap:var(--s-2) var(--s-4); padding:var(--s-4); border-top:1px solid var(--border)}
-  .price-table tr:first-child{border-top:0}
-  .price-table td{display:block; padding:0; border:0; font-size:14.5px}
-  .price-table .obj{grid-column:1; grid-row:1; font-size:16px}
-  .price-table .price{grid-column:2; grid-row:1; text-align:right}
-  .price-table .meta{grid-column:1/-1; grid-row:2; color:var(--ink-soft)}
-}
-
-.price-note{
-  margin-top:var(--s-5);
-  display:flex; flex-wrap:wrap; gap:var(--s-4) var(--s-6);
-  padding:var(--s-5);
-  border-radius:var(--radius);
-  border:1px dashed rgba(90,70,60,.3);
-}
-.price-note div{flex:1 1 220px}
-.price-note b{display:block; font-size:19px; font-weight:800; margin-bottom:2px}
-.price-note span{font-size:14px; color:var(--ink-soft)}
-
-/* --------------------------------------------------------------------------
-   11. Калькулятор
+   9. Калькулятор
    -------------------------------------------------------------------------- */
 .calc{display:grid; gap:var(--s-5)}
 @media (min-width:1024px){ .calc{grid-template-columns:1.25fr .75fr; gap:var(--s-6); align-items:start} }
@@ -591,7 +520,7 @@ a.card:hover{transform:translateY(-3px); box-shadow:var(--shadow); border-color:
 .calc__copied.is-visible{opacity:1; transform:none}
 
 /* --------------------------------------------------------------------------
-   12. Портфолио
+   10. Портфолио
    -------------------------------------------------------------------------- */
 .filters{display:flex; flex-wrap:wrap; gap:var(--s-2); margin-bottom:var(--s-6)}
 .filter{
@@ -666,7 +595,7 @@ a.card:hover{transform:translateY(-3px); box-shadow:var(--shadow); border-color:
 .lightbox__nav--next{right:var(--s-3); top:50%; transform:translateY(-50%)}
 
 /* --------------------------------------------------------------------------
-   13. Почему мы / шаги
+   11. Почему мы / шаги
    -------------------------------------------------------------------------- */
 .why{display:grid; gap:var(--s-5)}
 @media (min-width:768px){ .why{grid-template-columns:repeat(2,1fr)} }
@@ -692,7 +621,7 @@ a.card:hover{transform:translateY(-3px); box-shadow:var(--shadow); border-color:
 .dark-block .step p{color:rgba(250,248,245,.7)}
 
 /* --------------------------------------------------------------------------
-   14. Отзывы — отбивка со ссылкой на группу
+   12. Отзывы — отбивка со ссылкой на группу
    -------------------------------------------------------------------------- */
 .reviews-cta{
   display:flex; flex-wrap:wrap; gap:var(--s-5);
@@ -705,7 +634,7 @@ a.card:hover{transform:translateY(-3px); box-shadow:var(--shadow); border-color:
 @media (max-width:559px){ .reviews-cta .btn{width:100%} }
 
 /* --------------------------------------------------------------------------
-   15. Мастер
+   13. Мастер
    -------------------------------------------------------------------------- */
 /* без фото мастера — одна колонка; появится фото, вёрстка сама станет в две */
 .master{display:grid; gap:var(--s-6); align-items:center; max-width:820px}
@@ -724,7 +653,7 @@ a.card:hover{transform:translateY(-3px); box-shadow:var(--shadow); border-color:
 .master__sign b{display:block; font-size:17px; color:var(--ink); font-weight:700}
 
 /* --------------------------------------------------------------------------
-   16. Блок связи — звонок и мессенджеры
+   14. Блок связи — звонок и мессенджеры
    -------------------------------------------------------------------------- */
 .contact-block{
   padding:var(--s-6) var(--s-5);
@@ -783,7 +712,7 @@ a.card:hover{transform:translateY(-3px); box-shadow:var(--shadow); border-color:
 .contact-card--vk:hover .contact-card__icon{background:#07F; color:#fff}
 
 /* --------------------------------------------------------------------------
-   17. FAQ
+   15. FAQ
    -------------------------------------------------------------------------- */
 .faq{max-width:900px; margin-inline:auto; border-top:1px solid var(--border)}
 .faq__item{border-bottom:1px solid var(--border)}
@@ -807,7 +736,7 @@ a.card:hover{transform:translateY(-3px); box-shadow:var(--shadow); border-color:
 .faq__a p{padding-bottom:var(--s-5); padding-right:var(--s-7); font-size:16px; line-height:1.6; color:var(--ink-soft)}
 
 /* --------------------------------------------------------------------------
-   18. Футер
+   16. Футер
    -------------------------------------------------------------------------- */
 .footer{background:var(--dark); color:var(--bg); border-top:2px solid var(--line); padding-block:var(--s-8) var(--s-6)}
 .footer__grid{display:grid; gap:var(--s-6)}
@@ -835,7 +764,7 @@ a.card:hover{transform:translateY(-3px); box-shadow:var(--shadow); border-color:
 }
 
 /* --------------------------------------------------------------------------
-   19. Плавающие элементы
+   17. Плавающие элементы
    -------------------------------------------------------------------------- */
 .floating{
   position:fixed; right:var(--s-4); bottom:var(--s-4); z-index:90;
@@ -854,7 +783,7 @@ a.card:hover{transform:translateY(-3px); box-shadow:var(--shadow); border-color:
 @media (min-width:1024px){ .floating__btn--call{display:none} }
 
 /* --------------------------------------------------------------------------
-   20. Появление при скролле
+   18. Появление при скролле
    -------------------------------------------------------------------------- */
 .reveal{opacity:0; transform:translateY(18px); transition:opacity .5s var(--ease), transform .5s var(--ease)}
 .reveal.is-in{opacity:1; transform:none}
@@ -868,7 +797,7 @@ a.card:hover{transform:translateY(-3px); box-shadow:var(--shadow); border-color:
 }
 
 /* --------------------------------------------------------------------------
-   21. Юридические страницы (политика обработки ПД)
+   19. Юридические страницы (политика обработки ПД)
    -------------------------------------------------------------------------- */
 .legal{max-width:820px; margin-inline:auto; padding-block:var(--s-7) var(--s-8)}
 .legal h1{font-size:clamp(28px,4.4vw,40px); margin-bottom:var(--s-4)}
@@ -917,7 +846,7 @@ a.card:hover{transform:translateY(-3px); box-shadow:var(--shadow); border-color:
 .page-head__phone:hover{color:var(--gold)}
 
 /* --------------------------------------------------------------------------
-   22. Хлебные крошки (для внутренних страниц)
+   20. Хлебные крошки (для внутренних страниц)
    -------------------------------------------------------------------------- */
 .crumbs{display:flex; flex-wrap:wrap; gap:var(--s-2); padding-block:var(--s-4); font-size:13.5px; color:var(--ink-soft)}
 .crumbs a:hover{color:var(--gold-deep)}
