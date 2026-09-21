@@ -392,7 +392,9 @@ h1,h2,h3,.h1,.h2,.h3{
    -------------------------------------------------------------------------- */
 .stats{border-block:1px solid var(--border); background:var(--bg-alt)}
 .stats__grid{display:grid; grid-template-columns:repeat(2,1fr); gap:var(--s-5) var(--s-4); padding-block:var(--s-7)}
-@media (min-width:900px){ .stats__grid{grid-template-columns:repeat(4,1fr)} }
+/* цифр три — на узких экранах последняя занимает обе колонки, без дыры справа */
+@media (max-width:899px){ .stats__grid > :last-child{grid-column:1 / -1} }
+@media (min-width:900px){ .stats__grid{grid-template-columns:repeat(3,1fr)} }
 .stat__label{margin-top:var(--s-2); font-size:14.5px; color:var(--ink-soft); line-height:1.35; max-width:22ch}
 
 /* --------------------------------------------------------------------------
