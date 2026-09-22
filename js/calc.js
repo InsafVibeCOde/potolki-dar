@@ -1,7 +1,6 @@
 /* ==========================================================================
    Калькулятор стоимости натяжного потолка
-   Ставки откалиброваны по реальным сданным объектам «ДаР».
-   Итог показывается вилкой — точная цена только после замера.
+   Ставки — из прайса «ДаР». Считает в браузере, никуда ничего не отправляет.
    ========================================================================== */
 (function () {
   'use strict';
@@ -9,53 +8,69 @@
   var root = document.querySelector('[data-calc]');
   if (!root) return;
 
-  /* ---------- прайс ---------- */
+  /* ---------- прайс ----------
+     Цены, отмеченные «оценка», заказчик не давал — их нужно уточнить
+     и заменить здесь же. Остальное из прайса один в один.
+     ------------------------------------------------------------------ */
   var PRICE = {
-    canvas: {              // ₽ за м² с работой и материалом
-      matt:   750,
-      gloss:  800,
-      satin:  850,
-      fabric: 1550         // ткань Descor
+    canvas: {                 // ₽ за м², потолок под ключ
+      matt:   700,            // бюджетный вариант из прайса
+      gloss:  800,            // оценка
+      satin:  850,            // оценка
+      fabric: 1900            // ткань Descor — оценка
     },
-    profile: {             // ₽ за погонный метр периметра
-      standard: 0,
-      shadow:   750,       // теневой EuroKraab
-      floating: 1000       // парящий с подсветкой
+    profile: {                // ₽ за погонный метр периметра
+      standard:      0,
+      shadowPlastic: 350,
+      shadowAlu:    1000      // «от 1000»
     },
-    spot:       550,       // точечный светильник, ₽/шт
-    lightLine: 4200,       // световая линия, ₽/пог.м
-    track:     4800,       // трековая система, ₽/пог.м
-    cornice:    950,       // скрытый карниз ПК-13/14, ₽/пог.м
-    corniceLight: 650,     // надбавка за подсветку карниза, ₽/пог.м
-    insert:     180,       // чёрная вставка по периметру, ₽/пог.м
-    minOrder: 9000         // минимум по полотну — выезд + работа на малой площади
+    corner: 350,              // запил угла 45°, ₽ за угол
+    spot:   450,              // точечный светильник с разводкой, ₽/шт
+    lamp:   500,              // установка люстры без сборки, ₽/шт
+    lightLine: 3500,          // световая линия, ₽/пог.м («от»)
+    track: {                  // трековое освещение, ₽/пог.м
+      none:      0,
+      surface:  700,
+      hidden:  3500,
+      magnetic: 4000
+    },
+    cornice: {                // скрытый карниз ПК-14, ₽/пог.м
+      none:    0,
+      plastic: 1800,
+      alu:     2800
+    },
+    minOrder: 9000            // минимум по полотну на малой площади — оценка
   };
 
-  var SPREAD_LOW = 0.92;   // вилка итога
-  var SPREAD_HIGH = 1.12;
-
   /* ---------- элементы ---------- */
-  var areaRange   = root.querySelector('[data-area]');
-  var areaOut     = root.querySelector('[data-area-out]');
-  var spotRange   = root.querySelector('[data-spots]');
-  var spotOut     = root.querySelector('[data-spots-out]');
-  var lineRange   = root.querySelector('[data-line]');
-  var lineOut     = root.querySelector('[data-line-out]');
-  var trackRange  = root.querySelector('[data-track]');
-  var trackOut    = root.querySelector('[data-track-out]');
-  var cornRange   = root.querySelector('[data-cornice]');
-  var cornOut     = root.querySelector('[data-cornice-out]');
+  var areaRange    = root.querySelector('[data-area]');
+  var areaOut      = root.querySelector('[data-area-out]');
+  var cornersField = root.querySelector('[data-corners]');
+  var cornersRange = root.querySelector('[data-corners-range]');
+  var cornersOut   = root.querySelector('[data-corners-out]');
+  var spotRange    = root.querySelector('[data-spots]');
+  var spotOut      = root.querySelector('[data-spots-out]');
+  var lampRange    = root.querySelector('[data-lamps]');
+  var lampOut      = root.querySelector('[data-lamps-out]');
+  var lineRange    = root.querySelector('[data-line]');
+  var lineOut      = root.querySelector('[data-line-out]');
+  var trackWrap    = root.querySelector('[data-track-len]');
+  var trackRange   = root.querySelector('[data-track]');
+  var trackOut     = root.querySelector('[data-track-out]');
+  var cornWrap     = root.querySelector('[data-cornice-len]');
+  var cornRange    = root.querySelector('[data-cornice]');
+  var cornOut      = root.querySelector('[data-cornice-out]');
 
   var sumOut   = document.querySelector('[data-calc-sum]');
   var linesOut = document.querySelector('[data-calc-lines]');
   var perM2Out = document.querySelector('[data-calc-perm2]');
 
   var rub = new Intl.NumberFormat('ru-RU');
-  var message = '';                 // текст сметы для копирования
+  var message = '';                  // текст сметы для копирования
 
   function money(n) { return rub.format(Math.round(n / 100) * 100) + ' ₽'; }
 
-  /* периметр прямоугольной комнаты, близкой к квадрату, + запас на ниши */
+  /* периметр комнаты, близкой к квадрату, с запасом на ниши */
   function perimeter(area) {
     return Math.round(4 * Math.sqrt(area) * 1.1);
   }
@@ -65,55 +80,101 @@
     return el ? el.value : null;
   }
 
+  var TRACK_NAME = {
+    surface:  'Трек накладной',
+    hidden:   'Трек скрытого монтажа',
+    magnetic: 'Магнитный трек'
+  };
+
+  var CORNICE_NAME = {
+    plastic: 'Скрытый карниз ПК-14, пластик',
+    alu:     'Скрытый карниз ПК-14, алюминий'
+  };
+
+  var PROFILE_NAME = {
+    shadowPlastic: 'Теневой профиль, пластик',
+    shadowAlu:     'Теневой профиль, алюминий'
+  };
+
   function calc() {
-    var area   = +areaRange.value;
-    var spots  = +spotRange.value;
-    var line   = +lineRange.value;
-    var track  = +trackRange.value;
-    var corn   = +cornRange.value;
+    var area  = +areaRange.value;
+    var spots = +spotRange.value;
+    var lamps = +lampRange.value;
+    var line  = +lineRange.value;
 
     var canvasType  = checked('canvas')  || 'matt';
     var profileType = checked('profile') || 'standard';
-    var corniceLit  = root.querySelector('[name="cornice-light"]').checked;
-    var insert      = root.querySelector('[name="insert"]').checked;
+    var trackType   = checked('track')   || 'none';
+    var corniceType = checked('cornice') || 'none';
+
+    /* поля длины и углов показываем только когда они нужны */
+    var showCorners = profileType !== 'standard';
+    cornersField.hidden = !showCorners;
+    trackWrap.hidden = trackType === 'none';
+    cornWrap.hidden = corniceType === 'none';
+
+    var corners = showCorners ? +cornersRange.value : 0;
+    var track   = trackType === 'none' ? 0 : +trackRange.value;
+    var corn    = corniceType === 'none' ? 0 : +cornRange.value;
 
     var P = perimeter(area);
     var rows = [];
+    var total = 0;
 
     var canvasSum = Math.max(area * PRICE.canvas[canvasType], PRICE.minOrder);
-    rows.push(['Полотно и монтаж, ' + area + ' м²', canvasSum]);
+    rows.push(['Потолок под ключ, ' + area + ' м²', canvasSum]);
+    total += canvasSum;
 
     if (PRICE.profile[profileType]) {
       var profSum = P * PRICE.profile[profileType];
-      rows.push([
-        (profileType === 'shadow' ? 'Теневой профиль EuroKraab' : 'Парящая конструкция') + ', ' + P + ' пог.м',
-        profSum
-      ]);
-      canvasSum += profSum;
+      rows.push([PROFILE_NAME[profileType] + ', ' + P + ' пог.м', profSum]);
+      total += profSum;
+
+      if (corners) {
+        var cornerSum = corners * PRICE.corner;
+        rows.push(['Запил углов 45°, ' + corners + ' шт', cornerSum]);
+        total += cornerSum;
+      }
     }
 
-    var total = canvasSum;
+    if (spots) {
+      var s = spots * PRICE.spot;
+      rows.push(['Точечные светильники, ' + spots + ' шт', s]);
+      total += s;
+    }
 
-    if (spots) { var s = spots * PRICE.spot; rows.push(['Точечные светильники, ' + spots + ' шт', s]); total += s; }
-    if (line)  { var l = line * PRICE.lightLine; rows.push(['Световые линии, ' + line + ' пог.м', l]); total += l; }
-    if (track) { var t = track * PRICE.track; rows.push(['Трековая система, ' + track + ' пог.м', t]); total += t; }
+    if (lamps) {
+      var lm = lamps * PRICE.lamp;
+      rows.push(['Установка люстр, ' + lamps + ' шт', lm]);
+      total += lm;
+    }
+
+    if (line) {
+      var l = line * PRICE.lightLine;
+      rows.push(['Световые линии, ' + line + ' пог.м', l]);
+      total += l;
+    }
+
+    if (track) {
+      var t = track * PRICE.track[trackType];
+      rows.push([TRACK_NAME[trackType] + ', ' + track + ' пог.м', t]);
+      total += t;
+    }
+
     if (corn) {
-      var c = corn * (PRICE.cornice + (corniceLit ? PRICE.corniceLight : 0));
-      rows.push(['Скрытый карниз' + (corniceLit ? ' с подсветкой' : '') + ', ' + corn + ' пог.м', c]);
+      var c = corn * PRICE.cornice[corniceType];
+      rows.push([CORNICE_NAME[corniceType] + ', ' + corn + ' пог.м', c]);
       total += c;
     }
-    if (insert) { var i = P * PRICE.insert; rows.push(['Чёрная вставка по периметру, ' + P + ' пог.м', i]); total += i; }
 
-    /* вывод */
-    sumOut.textContent = money(total * SPREAD_LOW) + ' — ' + money(total * SPREAD_HIGH);
-
+    /* ---------- вывод ---------- */
+    sumOut.textContent = 'от ' + money(total);
     if (perM2Out) perM2Out.textContent = money(total / area) + ' / м²';
 
     linesOut.innerHTML = rows.map(function (r) {
       return '<li><span>' + r[0] + '</span><span>' + money(r[1]) + '</span></li>';
     }).join('');
 
-    /* текст сметы держим наготове — его копирует кнопка под результатом */
     message = 'Здравствуйте! Посчитал на сайте:\n\n' +
               rows.map(function (r) { return '— ' + r[0] + ': ' + money(r[1]); }).join('\n') +
               '\n\nИтого ориентировочно: ' + sumOut.textContent +
@@ -128,11 +189,13 @@
     sync();
   }
 
-  bind(areaRange,  areaOut,  'м²');
-  bind(spotRange,  spotOut,  'шт');
-  bind(lineRange,  lineOut,  'пог.м');
-  bind(trackRange, trackOut, 'пог.м');
-  bind(cornRange,  cornOut,  'пог.м');
+  bind(areaRange,    areaOut,    'м²');
+  bind(cornersRange, cornersOut, 'шт');
+  bind(spotRange,    spotOut,    'шт');
+  bind(lampRange,    lampOut,    'шт');
+  bind(lineRange,    lineOut,    'пог.м');
+  bind(trackRange,   trackOut,   'пог.м');
+  bind(cornRange,    cornOut,    'пог.м');
 
   root.addEventListener('change', calc);
   calc();
@@ -168,7 +231,6 @@
 
   function copyToClipboard(text) {
     if (navigator.clipboard && window.isSecureContext) {
-      // если браузер откажет в доступе к буферу — пробуем старый способ
       return navigator.clipboard.writeText(text).catch(function () {
         return copyLegacy(text);
       });
