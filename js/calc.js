@@ -38,8 +38,7 @@
       none:    0,
       plastic: 1800,
       alu:     2800
-    },
-    minOrder: 9000            // минимум по полотну на малой площади — оценка
+    }
   };
 
   /* ---------- элементы ---------- */
@@ -121,7 +120,7 @@
     var rows = [];
     var total = 0;
 
-    var canvasSum = Math.max(area * PRICE.canvas[canvasType], PRICE.minOrder);
+    var canvasSum = area * PRICE.canvas[canvasType];
     rows.push(['Потолок под ключ, ' + area + ' м²', canvasSum]);
     total += canvasSum;
 
