@@ -27,8 +27,13 @@ ROOT = 'img'
 # pre      — предварительный кроп в долях (left, top, right, bottom)
 JOBS = [
     # ---------------- первый экран ----------------
+    # вертикальный кадр — для телефонов, фон под текст
     dict(src='photo_2026-09-18_19-03-21.jpg', out=ROOT + '/hero.webp',
          ratio=(4, 5), anchor=0.30, width=900, bright=1.05),
+
+    # широкий кадр — для десктопа, тот же приём
+    dict(src='photo_2026-09-18_19-03-07.jpg', out=ROOT + '/hero-wide.webp',
+         ratio=(16, 9), anchor=0.30, width=1800, bright=1.03),
 
     # ---------------- портфолио, 4:3 ----------------
     dict(src='photo_2026-09-18_19-03-07.jpg', out=PORTFOLIO + '/trek-glyanec.webp',
