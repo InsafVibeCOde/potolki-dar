@@ -412,16 +412,6 @@ h1,h2,h3,.h1,.h2,.h3{
   background-size:12px; background-repeat:no-repeat; background-position:center;
 }
 
-/* строка доверия */
-.hero__trust{
-  margin-top:var(--s-5);
-  display:flex; align-items:center; gap:var(--s-2);
-  font-size:14.5px; font-weight:500;
-  color:rgba(250,248,245,.86);
-}
-.hero__trust svg{color:var(--gold); flex:none}
-.hero__trust .fill-me{padding:0 5px; font-size:1em}
-
 /* цена-якорь: первое, что ищут глазами */
 .hero__price{
   margin-top:var(--s-5);
