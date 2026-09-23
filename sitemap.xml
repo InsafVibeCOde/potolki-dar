@@ -3,29 +3,11 @@
 
   <url><loc>https://potolki-dar.ru/</loc><priority>1.0</priority><changefreq>weekly</changefreq></url>
 
-  <!-- ключевые посадочные -->
-  <url><loc>https://potolki-dar.ru/svetovye-linii/</loc><priority>0.9</priority></url>
-  <url><loc>https://potolki-dar.ru/tenevoy-profil/</loc><priority>0.9</priority></url>
-  <url><loc>https://potolki-dar.ru/skrytyy-karniz/</loc><priority>0.8</priority></url>
-  <url><loc>https://potolki-dar.ru/paryashchiy-potolok/</loc><priority>0.8</priority></url>
-  <url><loc>https://potolki-dar.ru/trekovoe-osveshchenie/</loc><priority>0.8</priority></url>
-
-  <!-- полотна -->
-  <url><loc>https://potolki-dar.ru/matovye-potolki/</loc><priority>0.8</priority></url>
-  <url><loc>https://potolki-dar.ru/glyancevye-potolki/</loc><priority>0.7</priority></url>
-  <url><loc>https://potolki-dar.ru/satinovye-potolki/</loc><priority>0.7</priority></url>
-  <url><loc>https://potolki-dar.ru/tkanevye-potolki/</loc><priority>0.8</priority></url>
-
-  <!-- помещения -->
-  <url><loc>https://potolki-dar.ru/potolki-v-vannuyu/</loc><priority>0.7</priority></url>
-  <url><loc>https://potolki-dar.ru/potolki-na-kuhnyu/</loc><priority>0.7</priority></url>
-  <url><loc>https://potolki-dar.ru/potolki-v-spalnyu/</loc><priority>0.7</priority></url>
-  <url><loc>https://potolki-dar.ru/potolki-v-chastnyy-dom/</loc><priority>0.7</priority></url>
-
-  <!-- служебные -->
-  <url><loc>https://potolki-dar.ru/ceny/</loc><priority>0.9</priority></url>
-  <url><loc>https://potolki-dar.ru/portfolio/</loc><priority>0.8</priority></url>
-  <url><loc>https://potolki-dar.ru/blog/</loc><priority>0.6</priority></url>
-  <url><loc>https://potolki-dar.ru/kontakty/</loc><priority>0.7</priority></url>
+  <!--
+    Сюда добавлять посадочные страницы по мере того, как они появятся:
+    svetovye-linii/, tenevoy-profil/, skrytyy-karniz/ и так далее.
+    Страницу, которой ещё нет, в карту не вносить — поисковик получит 404.
+    Политика обработки данных закрыта от индексации (noindex) и в карту не входит.
+  -->
 
 </urlset>

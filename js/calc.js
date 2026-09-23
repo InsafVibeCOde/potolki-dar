@@ -69,6 +69,7 @@
   var cornOut      = root.querySelector('[data-cornice-out]');
 
   var sumOut   = document.querySelector('[data-calc-sum]');
+  var barSum   = document.querySelector('[data-calc-bar]');
   var linesOut = document.querySelector('[data-calc-lines]');
   var perM2Out = document.querySelector('[data-calc-perm2]');
 
@@ -185,6 +186,7 @@
 
     /* ---------- вывод ---------- */
     sumOut.textContent = 'от ' + money(total);
+    if (barSum) barSum.textContent = sumOut.textContent;
     if (perM2Out) perM2Out.textContent = money(total / area) + ' / м²';
 
     linesOut.innerHTML = rows.map(function (r) {
@@ -216,6 +218,15 @@
 
   root.addEventListener('change', calc);
   calc();
+
+  /* строку с итогом прячем, когда на экране уже видна сама смета */
+  var bar = document.querySelector('.calc__bar');
+  var resultCard = document.querySelector('.calc__result');
+  if (bar && resultCard && 'IntersectionObserver' in window) {
+    new IntersectionObserver(function (entries) {
+      bar.classList.toggle('is-hidden', entries[0].isIntersecting);
+    }, { threshold: 0.2 }).observe(resultCard);
+  }
 
   /* ------------------------------------------------------------------
      «Скопировать расчёт и написать»
