@@ -32,7 +32,7 @@ if (location.hostname.endsWith('github.io')) {
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&display=swap">
-<link rel="stylesheet" href="css/style.css?v=5">
+<link rel="stylesheet" href="css/style.css?v=6">
 
 <script type="application/ld+json">
 {
@@ -373,12 +373,13 @@ if (location.hostname.endsWith('github.io')) {
         </div>
 
         <div class="field">
-          <span class="field__label" id="lbl-cornice">Скрытый карниз под шторы</span>
+          <span class="field__label" id="lbl-cornice">Карниз под шторы</span>
           <div class="chips" role="radiogroup" aria-labelledby="lbl-cornice">
             <label class="chip"><input type="radio" name="cornice" value="none" checked><span>Не нужен</span></label>
-            <label class="chip"><input type="radio" name="cornice" value="plastic"><span>ПК-14 пластиковый</span></label>
-            <label class="chip"><input type="radio" name="cornice" value="alu"><span>ПК-14 алюминиевый</span></label>
-            <label class="chip"><input type="radio" name="cornice" value="am1"><span>АМ-1 однорядный</span></label>
+            <label class="chip"><input type="radio" name="cornice" value="surface"><span>Накладной</span></label>
+            <label class="chip"><input type="radio" name="cornice" value="plastic"><span>Скрытый ПК-14, пластик</span></label>
+            <label class="chip"><input type="radio" name="cornice" value="alu"><span>Скрытый ПК-14, алюминий</span></label>
+            <label class="chip"><input type="radio" name="cornice" value="am1"><span>Скрытый АМ-1 однорядный</span></label>
           </div>
           <div class="range-row" style="margin-top:16px" data-cornice-len hidden>
             <input class="range" type="range" id="calc-cornice" min="0" max="20" step="0.5" value="3" data-cornice aria-label="Длина карниза">
@@ -893,7 +894,7 @@ if (location.hostname.endsWith('github.io')) {
   </figure>
 </div>
 
-<script src="js/main.js?v=5" defer></script>
-<script src="js/calc.js?v=5" defer></script>
+<script src="js/main.js?v=6" defer></script>
+<script src="js/calc.js?v=6" defer></script>
 </body>
 </html>
