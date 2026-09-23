@@ -4,6 +4,48 @@
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
+   0. Шрифт — лежит в проекте, а не на Google Fonts
+   Так он быстрее отдаётся из России и не передаёт IP посетителей за рубеж.
+   Файл вариативный: один на весь диапазон насыщенности 400–800.
+   -------------------------------------------------------------------------- */
+@font-face{
+  font-family:'Onest';
+  font-style:normal;
+  font-weight:400 800;
+  font-display:swap;
+  src:url('../fonts/onest-cyrillic.woff2') format('woff2');
+  unicode-range:U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face{
+  font-family:'Onest';
+  font-style:normal;
+  font-weight:400 800;
+  font-display:swap;
+  src:url('../fonts/onest-cyrillic-ext.woff2') format('woff2');
+  unicode-range:U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face{
+  font-family:'Onest';
+  font-style:normal;
+  font-weight:400 800;
+  font-display:swap;
+  src:url('../fonts/onest-latin.woff2') format('woff2');
+  unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+                U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+                U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face{
+  font-family:'Onest';
+  font-style:normal;
+  font-weight:400 800;
+  font-display:swap;
+  src:url('../fonts/onest-latin-ext.woff2') format('woff2');
+  unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+                U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF,
+                U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* --------------------------------------------------------------------------
    1. Токены
    -------------------------------------------------------------------------- */
 :root{
@@ -370,6 +412,16 @@ h1,h2,h3,.h1,.h2,.h3{
   background-size:12px; background-repeat:no-repeat; background-position:center;
 }
 
+/* строка доверия */
+.hero__trust{
+  margin-top:var(--s-5);
+  display:flex; align-items:center; gap:var(--s-2);
+  font-size:14.5px; font-weight:500;
+  color:rgba(250,248,245,.86);
+}
+.hero__trust svg{color:var(--gold); flex:none}
+.hero__trust .fill-me{padding:0 5px; font-size:1em}
+
 /* цена-якорь: первое, что ищут глазами */
 .hero__price{
   margin-top:var(--s-5);
@@ -640,6 +692,34 @@ h1,h2,h3,.h1,.h2,.h3{
 @media (min-width:640px){ .works{grid-template-columns:repeat(2,1fr)} }
 @media (min-width:1024px){ .works{grid-template-columns:repeat(3,1fr)} }
 
+/* на телефоне 12 карточек столбиком растягивали страницу на пол-экрана прокрутки —
+   поэтому горизонтальная лента со свайпом */
+@media (max-width:639px){
+  .works{
+    display:flex;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+    margin-inline:calc(var(--s-4) * -1);   /* лента уходит под края экрана */
+    padding-inline:var(--s-4);
+    padding-bottom:var(--s-2);
+  }
+  .works::-webkit-scrollbar{display:none}
+  .work{
+    flex:0 0 84%;                          /* край следующей карточки виден — видно, что есть ещё */
+    scroll-snap-align:center;
+  }
+}
+
+.works-hint{
+  display:none;
+  margin-top:var(--s-4);
+  font-size:13.5px; color:rgba(250,248,245,.55);
+  display:flex; align-items:center; gap:var(--s-2);
+}
+@media (min-width:640px){ .works-hint{display:none} }
+
 .work{
   position:relative; display:block;
   border-radius:var(--radius); overflow:hidden;
@@ -738,26 +818,7 @@ h1,h2,h3,.h1,.h2,.h3{
 @media (max-width:559px){ .reviews-cta .btn{width:100%} }
 
 /* --------------------------------------------------------------------------
-   14. Мастер
-   -------------------------------------------------------------------------- */
-/* без фото мастера — одна колонка; появится фото, вёрстка сама станет в две */
-.master{display:grid; gap:var(--s-6); align-items:center; max-width:820px}
-@media (min-width:768px){
-  .master:has(.master__photo){grid-template-columns:.8fr 1.2fr; gap:var(--s-7); max-width:none}
-}
-.master__photo{border-radius:var(--radius-lg); overflow:hidden; aspect-ratio:3/4; background:var(--bg-alt); box-shadow:var(--shadow)}
-.master__photo img{width:100%; height:100%; object-fit:cover}
-.master blockquote{
-  margin:var(--s-5) 0 0;
-  padding-left:var(--s-5);
-  border-left:3px solid var(--gold-deep);
-  font-size:clamp(18px,2.4vw,22px); line-height:1.45; font-weight:500;
-}
-.master__sign{margin-top:var(--s-5); font-size:15px; color:var(--ink-soft)}
-.master__sign b{display:block; font-size:17px; color:var(--ink); font-weight:700}
-
-/* --------------------------------------------------------------------------
-   15. Блок связи — звонок и мессенджеры
+   14. Блок связи — звонок и мессенджеры
    -------------------------------------------------------------------------- */
 .contact-block{
   padding:var(--s-6) var(--s-5);
@@ -816,7 +877,7 @@ h1,h2,h3,.h1,.h2,.h3{
 .contact-card--vk:hover .contact-card__icon{background:#07F; color:#fff}
 
 /* --------------------------------------------------------------------------
-   16. FAQ
+   15. FAQ
    -------------------------------------------------------------------------- */
 .faq{max-width:900px; margin-inline:auto; border-top:1px solid var(--border)}
 .faq__item{border-bottom:1px solid var(--border)}
@@ -840,7 +901,7 @@ h1,h2,h3,.h1,.h2,.h3{
 .faq__a p{padding-bottom:var(--s-5); padding-right:var(--s-7); font-size:16px; line-height:1.6; color:var(--ink-soft)}
 
 /* --------------------------------------------------------------------------
-   17. Футер
+   16. Футер
    -------------------------------------------------------------------------- */
 .footer{background:var(--dark); color:var(--bg); border-top:2px solid var(--line); padding-block:var(--s-8) var(--s-6)}
 .footer__grid{display:grid; gap:var(--s-6)}
@@ -868,11 +929,16 @@ h1,h2,h3,.h1,.h2,.h3{
 }
 
 /* --------------------------------------------------------------------------
-   18. Плавающие элементы
+   17. Плавающие элементы
    -------------------------------------------------------------------------- */
-.floating{
-  position:fixed; right:var(--s-4); bottom:var(--s-4); z-index:90;
-  display:flex; flex-direction:column-reverse; gap:var(--s-3);
+/* На телефоне круглые кнопки залезали на текст — там вместо них
+   панель снизу, а сами кнопки остаются только на широких экранах. */
+.floating{display:none}
+@media (min-width:640px){
+  .floating{
+    position:fixed; right:var(--s-4); bottom:var(--s-4); z-index:90;
+    display:flex; flex-direction:column-reverse; gap:var(--s-3);
+  }
 }
 .floating__btn{
   width:58px; height:58px; border-radius:50%;
@@ -886,10 +952,39 @@ h1,h2,h3,.h1,.h2,.h3{
 .floating__btn--max{background:#5B6EF5; color:#fff; box-shadow:0 6px 20px rgba(91,110,245,.35)}
 @media (min-width:1024px){ .floating__btn--call{display:none} }
 
+/* панель быстрой связи — телефоны */
+.callbar{
+  position:fixed; inset:auto 0 0 0; z-index:95;
+  display:grid; grid-template-columns:repeat(3,1fr);
+  background:rgba(28,26,24,.97);
+  backdrop-filter:blur(10px);
+  border-top:1px solid var(--border-dark);
+  padding-bottom:env(safe-area-inset-bottom);
+}
+@media (min-width:640px){ .callbar{display:none} }
+
+.callbar__btn{
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px;
+  min-height:60px; padding:var(--s-2);
+  font-size:12px; font-weight:600; letter-spacing:-.01em;
+  color:var(--bg);
+  transition:background-color var(--dur) var(--ease);
+}
+.callbar__btn:active{background:rgba(250,248,245,.1)}
+.callbar__btn + .callbar__btn{border-left:1px solid var(--border-dark)}
+.callbar__btn svg{color:var(--gold)}
+.callbar__btn--max svg{color:#7B8CFF}
+.callbar__btn--vk svg{color:#5A8FE6}
+
+/* чтобы панель не закрывала низ страницы */
+@media (max-width:639px){
+  body{padding-bottom:calc(60px + env(safe-area-inset-bottom))}
+}
+
 /* --------------------------------------------------------------------------
-   19. Появление при скролле
+   18. Появление при скролле
    -------------------------------------------------------------------------- */
-.reveal{opacity:0; transform:translateY(18px); transition:opacity .5s var(--ease), transform .5s var(--ease)}
+.reveal{opacity:0; transform:translateY(10px); transition:opacity .28s var(--ease), transform .28s var(--ease)}
 .reveal.is-in{opacity:1; transform:none}
 
 @media (prefers-reduced-motion: reduce){
@@ -901,7 +996,7 @@ h1,h2,h3,.h1,.h2,.h3{
 }
 
 /* --------------------------------------------------------------------------
-   20. Юридические страницы (политика обработки ПД)
+   19. Юридические страницы (политика обработки ПД)
    -------------------------------------------------------------------------- */
 .legal{max-width:820px; margin-inline:auto; padding-block:var(--s-7) var(--s-8)}
 .legal h1{font-size:clamp(28px,4.4vw,40px); margin-bottom:var(--s-4)}

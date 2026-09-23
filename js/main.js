@@ -200,7 +200,9 @@
           io.unobserve(entry.target);
         }
       });
-    }, { rootMargin: '0px 0px -12% 0px', threshold: 0.05 });
+      /* положительный нижний отступ: блок «проявляется» ещё до того,
+         как попал в экран — при быстрой прокрутке не видно пустых мест */
+    }, { rootMargin: '200px 0px 300px 0px', threshold: 0 });
 
     reveals.forEach(function (el) { io.observe(el); });
   } else {

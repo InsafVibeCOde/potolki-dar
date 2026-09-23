@@ -29,10 +29,8 @@ if (location.hostname.endsWith('github.io')) {
 </script>
 
 <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&display=swap">
-<link rel="stylesheet" href="css/style.css?v=6">
+<link rel="preload" href="fonts/onest-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/style.css?v=9">
 
 <script type="application/ld+json">
 {
@@ -191,6 +189,11 @@ if (location.hostname.endsWith('github.io')) {
       <li>Гарантия 10 лет по договору</li>
       <li>Скидка 50% на освещение</li>
     </ul>
+
+    <p class="hero__trust">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+      <span class="fill-me">[N]</span>+ объектов в Ижевске и по Удмуртии
+    </p>
 
     <p class="hero__price"><b>от 750 ₽</b> за м² — замер и расчёт бесплатно, в день обращения</p>
 
@@ -567,6 +570,11 @@ if (location.hostname.endsWith('github.io')) {
         </span>
       </button>
     </div>
+
+    <p class="works-hint">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      Листайте вбок — работ больше
+    </p>
   </div>
 </section>
 
@@ -659,30 +667,7 @@ if (location.hostname.endsWith('github.io')) {
   </div>
 </section>
 
-<!-- ============================ МАСТЕР ============================ -->
-<section class="section" id="master">
-  <div class="container master">
-    <div>
-      <span class="eyebrow">Кто делает</span>
-      <h2 class="h2">Руслан</h2>
-      <p class="lead" style="margin-top:16px">Замер, расчёт и монтаж — один человек от начала до конца. Не диспетчер, не менеджер и не «бригада, которую вы увидите первый раз в день монтажа».</p>
-
-      <blockquote>«Без косяков и переделок, без колхоза. Как должно быть в нормальной работе — результат говорит сам за себя».</blockquote>
-
-      <p class="master__sign">
-        <b>Руслан</b>
-        Мастер и замерщик · Ижевск и Удмуртия
-      </p>
-
-      <div class="btn-row" style="margin-top:24px">
-        <a href="tel:+79648642469" class="btn btn--dark">Позвонить Руслану</a>
-        <a href="https://vk.ru/club235965748" class="btn btn--ghost" target="_blank" rel="noopener">Написать в ВК</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================ ФОРМА ЗАМЕРА ============================ -->
+<!-- ============================ СВЯЗЬ ============================ -->
 <section class="section section--tight" id="svyaz">
   <div class="container">
     <div class="contact-block dark-block">
@@ -864,6 +849,22 @@ if (location.hostname.endsWith('github.io')) {
   </div>
 </footer>
 
+<!-- ============ ПАНЕЛЬ СВЯЗИ (только на телефоне) ============ -->
+<nav class="callbar" aria-label="Быстрая связь">
+  <a href="tel:+79648642469" class="callbar__btn">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    Позвонить
+  </a>
+  <a href="https://max.ru/potolki-dar" class="callbar__btn callbar__btn--max" target="_blank" rel="noopener">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9.3 9.3 0 0 1-3.7-.7L3 21l1.9-4.8A8.1 8.1 0 0 1 4 11.5 8.4 8.4 0 0 1 12.5 3 8.4 8.4 0 0 1 21 11.5z"/></svg>
+    MAX
+  </a>
+  <a href="https://vk.ru/club235965748" class="callbar__btn callbar__btn--vk" target="_blank" rel="noopener">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.8 17.2c-5.5 0-8.7-3.8-8.8-10.1h2.8c.1 4.6 2.1 6.6 3.7 7V7.1h2.6v4c1.6-.2 3.2-2 3.8-4h2.6c-.4 2.5-2.2 4.3-3.5 5 1.3.6 3.3 2.2 4.1 5.1h-2.9c-.6-1.9-2.1-3.4-4.1-3.6v3.6h-.3z"/></svg>
+    ВКонтакте
+  </a>
+</nav>
+
 <!-- ============================ ПЛАВАЮЩИЕ КНОПКИ ============================ -->
 <div class="floating">
   <a href="tel:+79648642469" class="floating__btn floating__btn--call" aria-label="Позвонить: +7 964 864-24-69">
@@ -894,7 +895,7 @@ if (location.hostname.endsWith('github.io')) {
   </figure>
 </div>
 
-<script src="js/main.js?v=6" defer></script>
-<script src="js/calc.js?v=6" defer></script>
+<script src="js/main.js?v=9" defer></script>
+<script src="js/calc.js?v=9" defer></script>
 </body>
 </html>
