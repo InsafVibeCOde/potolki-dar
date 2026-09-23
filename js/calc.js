@@ -14,17 +14,21 @@
      ------------------------------------------------------------------ */
   var PRICE = {
     canvas: {                 // ₽ за м², потолок под ключ
-      matt:   700,            // бюджетный вариант из прайса
-      gloss:  800,            // оценка
-      satin:  850,            // оценка
-      fabric: 1900            // ткань Descor — оценка
+      matt:   750,            // бюджетный вариант из прайса
+      gloss:  850,            // оценка
+      satin:  900,            // оценка
+      fabric: 2000            // ткань Descor — оценка
     },
     profile: {                // ₽ за погонный метр периметра
       standard:      0,
       shadowPlastic: 350,
       shadowAlu:    1000      // «от 1000»
     },
-    corner: 350,              // запил угла 45°, ₽ за угол
+    corner: {                 // запил угла 45°, ₽ за угол
+      shadowPlastic: 350,
+      shadowAlu:     600
+    },
+    vent: 1000,               // установка вентиляционной решётки, ₽/шт
     spot:   450,              // точечный светильник с разводкой, ₽/шт
     lamp:   500,              // установка люстры без сборки, ₽/шт
     lightLine: 3500,          // световая линия, ₽/пог.м («от»)
@@ -34,10 +38,11 @@
       hidden:  3500,
       magnetic: 4000
     },
-    cornice: {                // скрытый карниз ПК-14, ₽/пог.м
+    cornice: {                // скрытый карниз, ₽/пог.м
       none:    0,
-      plastic: 1800,
-      alu:     2800
+      plastic: 1800,          // ПК-14 пластиковый
+      alu:     2800,          // ПК-14 алюминиевый
+      am1:     2500           // АМ-1 однорядный алюминиевый
     }
   };
 
@@ -51,6 +56,8 @@
   var spotOut      = root.querySelector('[data-spots-out]');
   var lampRange    = root.querySelector('[data-lamps]');
   var lampOut      = root.querySelector('[data-lamps-out]');
+  var ventRange    = root.querySelector('[data-vent]');
+  var ventOut      = root.querySelector('[data-vent-out]');
   var lineRange    = root.querySelector('[data-line]');
   var lineOut      = root.querySelector('[data-line-out]');
   var trackWrap    = root.querySelector('[data-track-len]');
@@ -87,7 +94,8 @@
 
   var CORNICE_NAME = {
     plastic: 'Скрытый карниз ПК-14, пластик',
-    alu:     'Скрытый карниз ПК-14, алюминий'
+    alu:     'Скрытый карниз ПК-14, алюминий',
+    am1:     'Скрытый карниз АМ-1 однорядный'
   };
 
   var PROFILE_NAME = {
@@ -99,6 +107,7 @@
     var area  = +areaRange.value;
     var spots = +spotRange.value;
     var lamps = +lampRange.value;
+    var vents = +ventRange.value;
     var line  = +lineRange.value;
 
     var canvasType  = checked('canvas')  || 'matt';
@@ -130,7 +139,7 @@
       total += profSum;
 
       if (corners) {
-        var cornerSum = corners * PRICE.corner;
+        var cornerSum = corners * PRICE.corner[profileType];
         rows.push(['Запил углов 45°, ' + corners + ' шт', cornerSum]);
         total += cornerSum;
       }
@@ -146,6 +155,12 @@
       var lm = lamps * PRICE.lamp;
       rows.push(['Установка люстр, ' + lamps + ' шт', lm]);
       total += lm;
+    }
+
+    if (vents) {
+      var v = vents * PRICE.vent;
+      rows.push(['Вентиляционные решётки, ' + vents + ' шт', v]);
+      total += v;
     }
 
     if (line) {
@@ -192,6 +207,7 @@
   bind(cornersRange, cornersOut, 'шт');
   bind(spotRange,    spotOut,    'шт');
   bind(lampRange,    lampOut,    'шт');
+  bind(ventRange,    ventOut,    'шт');
   bind(lineRange,    lineOut,    'пог.м');
   bind(trackRange,   trackOut,   'пог.м');
   bind(cornRange,    cornOut,    'пог.м');

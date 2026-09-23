@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Натяжные потолки в Ижевске за 1 день — «ДаР» | Световые линии, теневой профиль</title>
-<meta name="description" content="Монтаж натяжных потолков в Ижевске за 1 день: световые линии, теневой профиль EuroKraab, скрытые карнизы. Чистый монтаж, гарантия 10 лет, бесплатный замер. От 700 ₽/м². Тел. +7 (964) 864-24-69">
+<meta name="description" content="Монтаж натяжных потолков в Ижевске за 1 день: световые линии, теневой профиль EuroKraab, скрытые карнизы. Чистый монтаж, гарантия 10 лет, бесплатный замер. От 750 ₽/м². Тел. +7 (964) 864-24-69">
 <link rel="canonical" href="https://potolki-dar.ru/">
 
 <meta property="og:type" content="website">
@@ -32,7 +32,7 @@ if (location.hostname.endsWith('github.io')) {
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&display=swap">
-<link rel="stylesheet" href="css/style.css?v=3">
+<link rel="stylesheet" href="css/style.css?v=4">
 
 <script type="application/ld+json">
 {
@@ -43,7 +43,7 @@ if (location.hostname.endsWith('github.io')) {
   "description": "Монтаж натяжных потолков и потолочного освещения под ключ в Ижевске и по Удмуртии.",
   "url": "https://potolki-dar.ru/",
   "telephone": "+7-964-864-24-69",
-  "priceRange": "от 700 ₽/м²",
+  "priceRange": "от 750 ₽/м²",
   "image": "https://potolki-dar.ru/img/og-cover.jpg",
   "address": {
     "@type": "PostalAddress",
@@ -93,7 +93,7 @@ if (location.hostname.endsWith('github.io')) {
     {
       "@type": "Question",
       "name": "Сколько стоит натяжной потолок в Ижевске?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Потолок под ключ — от 700 ₽ за м², это бюджетный вариант, дальше всё зависит от пожеланий. Свет и конструкции считаются отдельно: точечный светильник с разводкой — 450 ₽, люстра — 500 ₽, световая линия — от 3500 ₽ за погонный метр, скрытый карниз — от 1800 ₽ за погонный метр. Прикинуть бюджет можно калькулятором на сайте, точную сумму назовём на бесплатном замере." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Потолок под ключ — от 750 ₽ за м², это бюджетный вариант, дальше всё зависит от пожеланий. Свет и конструкции считаются отдельно: точечный светильник с разводкой — 450 ₽, люстра — 500 ₽, световая линия — от 3500 ₽ за погонный метр, скрытый карниз — от 1800 ₽ за погонный метр. Прикинуть бюджет можно калькулятором на сайте, точную сумму назовём на бесплатном замере." }
     },
     {
       "@type": "Question",
@@ -192,7 +192,7 @@ if (location.hostname.endsWith('github.io')) {
       <li>Скидка 50% на освещение</li>
     </ul>
 
-    <p class="hero__price"><b>от 700 ₽</b> за м² — замер и расчёт бесплатно, в день обращения</p>
+    <p class="hero__price"><b>от 750 ₽</b> за м² — замер и расчёт бесплатно, в день обращения</p>
 
     <div class="hero__cta">
       <a class="btn btn--gold btn--lg" href="#calc">Рассчитать стоимость</a>
@@ -343,7 +343,15 @@ if (location.hostname.endsWith('github.io')) {
         </div>
 
         <div class="field">
-          <label class="field__label" for="calc-line">Световые линии</label>
+          <label class="field__label" for="calc-vent">Вентиляционные решётки</label>
+          <div class="range-row">
+            <input class="range" type="range" id="calc-vent" min="0" max="6" step="1" value="0" data-vent>
+            <output class="range-value" data-vent-out>0 шт</output>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="field__label" for="calc-line">Световые линии <span class="field__hint">с блоком питания и лентой</span></label>
           <div class="range-row">
             <input class="range" type="range" id="calc-line" min="0" max="20" step="0.5" value="0" data-line>
             <output class="range-value" data-line-out>0 пог.м</output>
@@ -355,7 +363,7 @@ if (location.hostname.endsWith('github.io')) {
           <div class="chips" role="radiogroup" aria-labelledby="lbl-track">
             <label class="chip"><input type="radio" name="track" value="none" checked><span>Не нужно</span></label>
             <label class="chip"><input type="radio" name="track" value="surface"><span>Накладной</span></label>
-            <label class="chip"><input type="radio" name="track" value="hidden"><span>Скрытого монтажа</span></label>
+            <label class="chip"><input type="radio" name="track" value="hidden"><span>Скрытого монтажа <small>без светильников</small></span></label>
             <label class="chip"><input type="radio" name="track" value="magnetic"><span>Магнитный</span></label>
           </div>
           <div class="range-row" style="margin-top:16px" data-track-len hidden>
@@ -370,6 +378,7 @@ if (location.hostname.endsWith('github.io')) {
             <label class="chip"><input type="radio" name="cornice" value="none" checked><span>Не нужен</span></label>
             <label class="chip"><input type="radio" name="cornice" value="plastic"><span>ПК-14 пластиковый</span></label>
             <label class="chip"><input type="radio" name="cornice" value="alu"><span>ПК-14 алюминиевый</span></label>
+            <label class="chip"><input type="radio" name="cornice" value="am1"><span>АМ-1 однорядный</span></label>
           </div>
           <div class="range-row" style="margin-top:16px" data-cornice-len hidden>
             <input class="range" type="range" id="calc-cornice" min="0" max="20" step="0.5" value="3" data-cornice aria-label="Длина карниза">
@@ -739,7 +748,7 @@ if (location.hostname.endsWith('github.io')) {
           Сколько стоит натяжной потолок в Ижевске?
           <span class="faq__icon" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>
         </button>
-        <div class="faq__a" id="faq-3"><div><p>Потолок под ключ — от 700 ₽ за м², это бюджетный вариант, дальше всё зависит от пожеланий. Свет и конструкции считаются отдельно: точечный светильник с разводкой электрики — 450 ₽, люстра — 500 ₽, световая линия — от 3500 ₽ за погонный метр, скрытый карниз — от 1800 ₽ за погонный метр. Прикинуть бюджет можно калькулятором на сайте, а точную сумму назовём на бесплатном замере и зафиксируем в договоре — после этого она не меняется.</p></div></div>
+        <div class="faq__a" id="faq-3"><div><p>Потолок под ключ — от 750 ₽ за м², это бюджетный вариант, дальше всё зависит от пожеланий. Свет и конструкции считаются отдельно: точечный светильник с разводкой электрики — 450 ₽, люстра — 500 ₽, световая линия — от 3500 ₽ за погонный метр, скрытый карниз — от 1800 ₽ за погонный метр. Прикинуть бюджет можно калькулятором на сайте, а точную сумму назовём на бесплатном замере и зафиксируем в договоре — после этого она не меняется.</p></div></div>
       </div>
 
       <div class="faq__item">
@@ -884,7 +893,7 @@ if (location.hostname.endsWith('github.io')) {
   </figure>
 </div>
 
-<script src="js/main.js?v=3" defer></script>
-<script src="js/calc.js?v=3" defer></script>
+<script src="js/main.js?v=4" defer></script>
+<script src="js/calc.js?v=4" defer></script>
 </body>
 </html>
