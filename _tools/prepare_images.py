@@ -16,7 +16,6 @@ from PIL import Image, ImageOps, ImageEnhance
 
 SRC = 'img/_source'
 PORTFOLIO = 'img/portfolio'
-SERVICES = 'img/services'
 ROOT = 'img'
 
 # src      — имя исходника
@@ -84,30 +83,6 @@ JOBS = [
     dict(src='photo_2026-09-18_19-03-33.jpg', out=PORTFOLIO + '/trek-kabinet.webp',
          ratio=(4, 3), anchor=0.30, width=800, bright=1.06),
 
-    # ---------------- карточки услуг: крупные планы деталей, 4:3 ----------------
-    # берём тот же исходник, что и в портфолио, но режем ближе — чтобы
-    # в услугах была деталь конструкции, а в портфолио — комната целиком
-    dict(src='photo_2026-09-18_19-03-09.jpg', out=SERVICES + '/svetovye-linii.webp',
-         ratio=(4, 3), anchor=0.5, width=600, pre=(0.2, 0.26, 0.85, 0.625), bright=1.05),
-
-    dict(src='photo_2026-09-18_19-03-16.jpg', out=SERVICES + '/tenevoy-profil.webp',
-         ratio=(4, 3), anchor=0.3, width=600, pre=(0.05, 0.1, 0.72, 0.6)),
-
-    dict(src='photo_2026-09-18_19-03-02.jpg', out=SERVICES + '/skrytyy-karniz.webp',
-         ratio=(4, 3), anchor=0.5, width=600, pre=(0.0, 0.1, 0.75, 0.52)),
-
-    dict(src='photo_2026-09-18_19-03-23.jpg', out=SERVICES + '/paryashchiy.webp',
-         ratio=(4, 3), anchor=0.5, width=600, pre=(0.1, 0.18, 0.8, 0.58), bright=1.1),
-
-    dict(src='photo_2026-09-18_19-03-32.jpg', out=SERVICES + '/trek.webp',
-         ratio=(4, 3), anchor=0.5, width=600, pre=(0.0, 0.08, 0.72, 0.62)),
-
-    dict(src='photo_2026-09-18_19-03-21.jpg', out=SERVICES + '/polotna.webp',
-         ratio=(4, 3), anchor=0.5, width=600, pre=(0.0, 0.0, 1.0, 0.5625), bright=1.04),
-
-    dict(src='photo_2026-09-18_19-03-19.jpg', out=SERVICES + '/led-soty.webp',
-         ratio=(4, 3), anchor=0.5, width=600, pre=(0.1, 0.05, 0.9, 0.5)),
-
     # ---------------- превью для соцсетей ----------------
     dict(src='photo_2026-09-18_19-03-07.jpg', out=ROOT + '/og-cover.jpg',
          ratio=(1200, 630), anchor=0.45, width=1200),
@@ -150,7 +125,6 @@ def enhance(im, bright):
 
 def main():
     os.makedirs(PORTFOLIO, exist_ok=True)
-    os.makedirs(SERVICES, exist_ok=True)
 
     for job in JOBS:
         src = os.path.join(SRC, job['src'])
