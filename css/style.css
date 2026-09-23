@@ -387,7 +387,7 @@ h1,h2,h3,.h1,.h2,.h3{
 }
 
 .hero__inner{position:relative; z-index:2; max-width:var(--maxw)}
-@media (min-width:900px){ .hero__inner > *{max-width:47ch} }
+@media (min-width:900px){ .hero__inner > *{max-width:47ch} .hero__inner > .hero__cta{max-width:none} }
 
 .hero h1{margin-top:var(--s-3); text-shadow:0 2px 24px rgba(0,0,0,.35)}
 .hero__sub{
@@ -432,18 +432,23 @@ h1,h2,h3,.h1,.h2,.h3{
 }
 @media (max-width:479px){ .hero__cta .btn{width:100%} }
 
-.hero__phone{
-  display:inline-flex; align-items:center; gap:var(--s-2);
-  min-height:48px;                    /* палец должен попадать уверенно */
-  padding-inline:var(--s-2);
-  margin-inline:calc(var(--s-2) * -1);
-  font-size:19px; font-weight:700; letter-spacing:-.01em;
-  color:var(--bg);
-  white-space:nowrap;
+.hero__call{
+  margin-top:var(--s-4);
+  font-size:15px; color:rgba(250,248,245,.7);
+}
+.hero__call a{
+  display:inline-flex; align-items:center; min-height:44px;   /* удобно попасть пальцем */
+  font-weight:700; color:var(--bg); white-space:nowrap;
   transition:color var(--dur) var(--ease);
 }
-.hero__phone svg{color:var(--gold); flex:none}
-.hero__phone:hover{color:var(--gold)}
+.hero__call a:hover{color:var(--gold)}
+/* на телефоне звонок и так всегда под пальцем — в панели снизу,
+   а место на первом экране нужно кнопкам */
+@media (max-width:639px){
+  .hero__call{display:none}
+  .hero__cta{gap:var(--s-3)}
+  .hero__cta .btn{padding-inline:var(--s-4); font-size:16px}
+}
 
 /* --------------------------------------------------------------------------
    8. Что делаем — перечень работ: значок и название, как строки прайса
@@ -746,6 +751,17 @@ h1,h2,h3,.h1,.h2,.h3{
 .dark-block .step p{color:rgba(250,248,245,.7)}
 
 /* --------------------------------------------------------------------------
+   11b. Призыв записаться на замер — в конце секций, где человек готов действовать
+   -------------------------------------------------------------------------- */
+.section-cta{
+  margin-top:var(--s-7);
+  display:flex; flex-wrap:wrap; align-items:center; gap:var(--s-4) var(--s-5);
+}
+.section-cta__text{font-size:clamp(17px,2vw,20px); font-weight:600; line-height:1.35}
+.dark-block .section-cta__text{color:var(--bg)}
+@media (max-width:479px){ .section-cta .btn{width:100%} }
+
+/* --------------------------------------------------------------------------
    12. Блок связи — звонок и мессенджеры
    -------------------------------------------------------------------------- */
 .contact-block{
@@ -760,6 +776,25 @@ h1,h2,h3,.h1,.h2,.h3{
   margin-top:var(--s-5);
   font-size:14px; color:rgba(250,248,245,.55); line-height:1.5;
   max-width:60ch;
+}
+
+/* что человек получает на замере */
+.zamer-list{
+  display:grid; gap:var(--s-3);
+  margin-bottom:var(--s-6);
+  max-width:900px;
+}
+@media (min-width:768px){ .zamer-list{grid-template-columns:repeat(2,1fr); gap:var(--s-4) var(--s-6)} }
+.zamer-list li{
+  position:relative; padding-left:32px;
+  font-size:16px; line-height:1.45; color:rgba(250,248,245,.9);
+}
+.zamer-list li::before{
+  content:''; position:absolute; left:0; top:1px;
+  width:22px; height:22px; border-radius:50%;
+  background:rgba(200,160,99,.2);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23F0D9A8' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+  background-size:12px; background-repeat:no-repeat; background-position:center;
 }
 
 .contact-grid{display:grid; gap:var(--s-3); grid-template-columns:1fr}

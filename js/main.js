@@ -152,6 +152,12 @@
     a.addEventListener('click', function () { reachGoal('phone_click'); });
   });
 
+  /* кнопки «Записаться на замер» ведут к блоку связи — считаем нажатия.
+     Только кнопки: пункт меню «Контакты» ведёт туда же, но это не запись. */
+  $$('a.btn[href="#svyaz"]').forEach(function (a) {
+    a.addEventListener('click', function () { reachGoal('zamer_cta'); });
+  });
+
   var MESSENGERS = { 'max.ru': 'max_click', 'vk.ru': 'vk_click' };
 
   $$('a[href^="http"]').forEach(function (a) {

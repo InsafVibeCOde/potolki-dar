@@ -30,7 +30,7 @@ if (location.hostname.endsWith('github.io')) {
 
 <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="fonts/onest-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="css/style.css?v=14">
+<link rel="stylesheet" href="css/style.css?v=15">
 
 <script type="application/ld+json">
 {
@@ -149,7 +149,7 @@ if (location.hostname.endsWith('github.io')) {
       <span class="header__note">Замер бесплатно · Ижевск и район</span>
     </div>
 
-    <a class="btn btn--gold" href="https://max.ru/potolki-dar" target="_blank" rel="noopener">Написать в MAX</a>
+    <a class="btn btn--gold" href="#svyaz">Бесплатный замер</a>
 
     <button class="burger" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Меню">
       <span></span><span></span><span></span>
@@ -166,7 +166,7 @@ if (location.hostname.endsWith('github.io')) {
     <a href="#svyaz">Контакты</a>
   </nav>
   <a href="tel:+79648642469" class="mobile-menu__phone">+7 (964) 864-24-69</a>
-  <a class="btn btn--gold btn--block" href="https://max.ru/potolki-dar" target="_blank" rel="noopener">Написать в MAX</a>
+  <a class="btn btn--gold btn--block" href="#svyaz">Записаться на замер</a>
 </div>
 
 <main>
@@ -193,12 +193,10 @@ if (location.hostname.endsWith('github.io')) {
     <p class="hero__price"><b>от 750 ₽</b> за м² — замер и расчёт бесплатно, в день обращения</p>
 
     <div class="hero__cta">
-      <a class="btn btn--gold btn--lg" href="#calc">Рассчитать стоимость</a>
-      <a class="hero__phone" href="tel:+79648642469">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        +7 (964) 864-24-69
-      </a>
+      <a class="btn btn--gold btn--lg" href="#svyaz">Записаться на бесплатный замер</a>
+      <a class="btn btn--ghost btn--lg" href="#calc">Рассчитать стоимость</a>
     </div>
+    <p class="hero__call">или позвоните: <a href="tel:+79648642469">+7 (964) 864-24-69</a></p>
   </div>
 </section>
 
@@ -385,7 +383,7 @@ if (location.hostname.endsWith('github.io')) {
 
         <ul class="calc__lines" data-calc-lines></ul>
 
-        <button class="btn btn--gold btn--block" data-calc-copy type="button">Скопировать расчёт и написать</button>
+        <button class="btn btn--gold btn--block" data-calc-copy type="button">Записаться на замер с этим расчётом</button>
         <p class="calc__copied" data-calc-copied role="status">Расчёт в буфере обмена — вставьте его в сообщение</p>
         <a href="tel:+79648642469" class="btn btn--ghost btn--block" style="margin-top:12px">+7 (964) 864-24-69</a>
       </aside>
@@ -531,6 +529,11 @@ if (location.hostname.endsWith('github.io')) {
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       Листайте вбок — работ больше
     </p>
+
+    <div class="section-cta">
+      <p class="section-cta__text">Хотите так же у себя?</p>
+      <a class="btn btn--gold btn--lg" href="#svyaz">Записаться на бесплатный замер</a>
+    </div>
   </div>
 </section>
 
@@ -604,48 +607,16 @@ if (location.hostname.endsWith('github.io')) {
         <p>Срок зависит от площади и сложности работ: простую комнату закрываем за день, конструкции со светом и длинными карнизами занимают дольше. Точный срок — в договоре. Убираем за собой и включаем свет при вас.</p>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- ============================ СВЯЗЬ ============================ -->
-<section class="section section--tight" id="svyaz">
-  <div class="container">
-    <div class="contact-block dark-block">
-      <div class="contact-block__head">
-        <span class="eyebrow">Бесплатный замер</span>
-        <h2 class="h2">Напишите или позвоните</h2>
-        <p class="lead">Отвечает мастер — без менеджеров и автоответчиков. Скажет вилку цены
-          сразу по телефону и приедет на замер в день обращения по Ижевску.</p>
-      </div>
-
-      <div class="contact-grid">
-        <a class="contact-card contact-card--call" href="tel:+79648642469">
-          <span class="contact-card__icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
-          <span class="contact-card__label">Позвонить</span>
-          <span class="contact-card__value">+7 (964) 864-24-69</span>
-        </a>
-
-        <a class="contact-card contact-card--max" href="https://max.ru/potolki-dar" target="_blank" rel="noopener">
-          <span class="contact-card__icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9.3 9.3 0 0 1-3.7-.7L3 21l1.9-4.8A8.1 8.1 0 0 1 4 11.5 8.4 8.4 0 0 1 12.5 3 8.4 8.4 0 0 1 21 11.5z"/></svg></span>
-          <span class="contact-card__label">MAX</span>
-          <span class="contact-card__value">Написать в мессенджер</span>
-        </a>
-
-        <a class="contact-card contact-card--vk" href="https://vk.ru/club235965748" target="_blank" rel="noopener">
-          <span class="contact-card__icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.8 17.2c-5.5 0-8.7-3.8-8.8-10.1h2.8c.1 4.6 2.1 6.6 3.7 7V7.1h2.6v4c1.6-.2 3.2-2 3.8-4h2.6c-.4 2.5-2.2 4.3-3.5 5 1.3.6 3.3 2.2 4.1 5.1h-2.9c-.6-1.9-2.1-3.4-4.1-3.6v3.6h-.3z"/></svg></span>
-          <span class="contact-card__label">ВКонтакте</span>
-          <span class="contact-card__value">Группа и все работы</span>
-        </a>
-      </div>
-
-      <p class="contact-block__note">Фото потолка и размеры комнаты удобнее скинуть в MAX —
-        так посчитаем точнее ещё до выезда.</p>
+    <div class="section-cta">
+      <p class="section-cta__text">Начните с замера — он бесплатный и ни к чему не обязывает.</p>
+      <a class="btn btn--gold btn--lg" href="#svyaz">Записаться на бесплатный замер</a>
     </div>
   </div>
 </section>
 
 <!-- ============================ FAQ ============================ -->
-<section class="section section--alt" id="faq">
+<section class="section" id="faq">
   <div class="container">
     <div class="section-head section-head--wide" style="text-align:left">
       <span class="eyebrow">Вопросы</span>
@@ -716,6 +687,49 @@ if (location.hostname.endsWith('github.io')) {
         </button>
         <div class="faq__a" id="faq-8"><div><p>Да, работаем по Удмуртии: Завьялово, Ягул, посёлки вокруг Ижевска, частные дома. Замер по городу бесплатный, по области — обсуждаем на звонке.</p></div></div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ СВЯЗЬ ============================ -->
+<section class="section section--tight" id="svyaz">
+  <div class="container">
+    <div class="contact-block dark-block">
+      <div class="contact-block__head">
+        <span class="eyebrow">Бесплатный замер</span>
+        <h2 class="h2">Запишитесь на бесплатный замер</h2>
+        <p class="lead">Позвоните или напишите — отвечает мастер, без менеджеров и автоответчиков.</p>
+      </div>
+
+      <ul class="zamer-list">
+        <li>Приедем в день обращения по Ижевску</li>
+        <li>Замерим, посмотрим основание и высоты, предложим схему света</li>
+        <li>Назовём точную цену и зафиксируем её в договоре — после замера она не меняется</li>
+        <li>Ни к чему не обязывает: не подойдёт — разойдёмся спокойно</li>
+      </ul>
+
+      <div class="contact-grid">
+        <a class="contact-card contact-card--call" href="tel:+79648642469">
+          <span class="contact-card__icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+          <span class="contact-card__label">Позвонить</span>
+          <span class="contact-card__value">+7 (964) 864-24-69</span>
+        </a>
+
+        <a class="contact-card contact-card--max" href="https://max.ru/potolki-dar" target="_blank" rel="noopener">
+          <span class="contact-card__icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9.3 9.3 0 0 1-3.7-.7L3 21l1.9-4.8A8.1 8.1 0 0 1 4 11.5 8.4 8.4 0 0 1 12.5 3 8.4 8.4 0 0 1 21 11.5z"/></svg></span>
+          <span class="contact-card__label">MAX</span>
+          <span class="contact-card__value">Написать в мессенджер</span>
+        </a>
+
+        <a class="contact-card contact-card--vk" href="https://vk.ru/club235965748" target="_blank" rel="noopener">
+          <span class="contact-card__icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.8 17.2c-5.5 0-8.7-3.8-8.8-10.1h2.8c.1 4.6 2.1 6.6 3.7 7V7.1h2.6v4c1.6-.2 3.2-2 3.8-4h2.6c-.4 2.5-2.2 4.3-3.5 5 1.3.6 3.3 2.2 4.1 5.1h-2.9c-.6-1.9-2.1-3.4-4.1-3.6v3.6h-.3z"/></svg></span>
+          <span class="contact-card__label">ВКонтакте</span>
+          <span class="contact-card__value">Группа и все работы</span>
+        </a>
+      </div>
+
+      <p class="contact-block__note">Фото потолка и размеры комнаты удобнее скинуть в MAX —
+        так посчитаем точнее ещё до выезда.</p>
     </div>
   </div>
 </section>
@@ -827,7 +841,7 @@ if (location.hostname.endsWith('github.io')) {
   </figure>
 </div>
 
-<script src="js/main.js?v=14" defer></script>
-<script src="js/calc.js?v=14" defer></script>
+<script src="js/main.js?v=15" defer></script>
+<script src="js/calc.js?v=15" defer></script>
 </body>
 </html>
