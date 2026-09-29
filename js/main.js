@@ -1,6 +1,6 @@
 /* ==========================================================================
    Натяжные потолки «ДаР» — общая логика
-   Меню, FAQ, фильтры портфолио, лайтбокс, цели Метрики, reveal
+   Меню, FAQ, фильтры портфолио, лайтбокс, отзывы, цели Метрики, reveal
    ========================================================================== */
 (function () {
   'use strict';
@@ -88,14 +88,26 @@
     var index = 0;
     var lastFocused = null;
 
+    /* в карточке — кадр 3:4, в просмотре — крупная версия без обрезки */
+    function fullSrc(node) {
+      var img = $('img', node);
+      return img.getAttribute('data-full') || img.getAttribute('src');
+    }
+
     function render() {
       var node = visible[index];
       if (!node) return;
       var img = $('img', node);
-      lbImg.src = img.getAttribute('src');
+      lbImg.src = fullSrc(node);
       lbImg.alt = img.getAttribute('alt') || '';
       lbCap.innerHTML = '<b>' + $('.work__title', node).textContent + '</b>' +
                         $('.work__meta', node).textContent;
+
+      // соседние кадры грузим заранее, чтобы листание шло без задержки
+      [1, -1].forEach(function (d) {
+        var next = visible[(index + d + visible.length) % visible.length];
+        if (next && next !== node) new Image().src = fullSrc(next);
+      });
     }
 
     function open(node) {
@@ -139,6 +151,48 @@
       if (e.key === 'ArrowLeft') step(-1);
       if (e.key === 'ArrowRight') step(1);
     });
+  }
+
+  /* ==================================================================
+     4b. Отзывы — лента листается свайпом, стрелками и с клавиатуры
+     ------------------------------------------------------------------
+     Без автопрокрутки: длинный текст в движении не прочитать.
+     ================================================================== */
+  var track = $('[data-reviews]');
+
+  if (track) {
+    var revPrev = $('[data-rev-prev]');
+    var revNext = $('[data-rev-next]');
+    var revThumb = $('[data-rev-progress]');
+    var smooth = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // шаг — одна карточка вместе с промежутком
+    function cardStep() {
+      var card = track.firstElementChild;
+      var gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+      return card ? card.getBoundingClientRect().width + gap : track.clientWidth;
+    }
+
+    function updateReviews() {
+      var x = track.scrollLeft;
+      var max = track.scrollWidth - track.clientWidth;
+      if (revPrev) revPrev.disabled = x <= 2;
+      if (revNext) revNext.disabled = x >= max - 2;
+      if (revThumb) {
+        revThumb.style.width = (track.clientWidth / track.scrollWidth * 100) + '%';
+        revThumb.style.transform = 'translateX(' + (x / track.clientWidth * 100) + '%)';
+      }
+    }
+
+    function slide(dir) {
+      track.scrollBy({ left: dir * cardStep(), behavior: smooth ? 'smooth' : 'auto' });
+    }
+
+    if (revPrev) revPrev.addEventListener('click', function () { slide(-1); });
+    if (revNext) revNext.addEventListener('click', function () { slide(1); });
+    track.addEventListener('scroll', updateReviews, { passive: true });
+    window.addEventListener('resize', updateReviews);
+    updateReviews();
   }
 
   /* ==================================================================
@@ -224,6 +278,7 @@
   }
 
   function applyPlaceholder(img) {
+    img.removeAttribute('data-full');       // крупной версии тоже нет — в просмотре будет заглушка
     img.src = placeholder(img.dataset.ph, +img.getAttribute('width') || 600, +img.getAttribute('height') || 450);
   }
 

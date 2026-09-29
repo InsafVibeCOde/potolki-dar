@@ -5,9 +5,13 @@
 Что делает:
   - при необходимости подрезает лишнее по краям (pre) — мусор в кадре, бутылки, стремянки
   - кропает под нужное соотношение; anchor задаёт, какую часть кадра оставить
-    по вертикали (0 = верх, 1 = низ) — у фото потолка сюжет обычно не по центру
+    по вертикали (0 = верх, 1 = низ), xanchor — по горизонтали (0 = левый край)
   - мягко вытягивает тени, правит яркость покадрово, добавляет резкость
   - ресайзит и сохраняет в WebP
+
+Портфолио: на каждую работу два файла — карточка 3:4 (600×800) и крупная версия
+для просмотра в portfolio/full/. Крупная под 3:4 не режется, к ней применяется
+только pre — в просмотре кадр виден целиком.
 
 Запуск из корня проекта:  python _tools/prepare_images.py
 """
@@ -16,77 +20,65 @@ from PIL import Image, ImageOps, ImageEnhance
 
 SRC = 'img/_source'
 PORTFOLIO = 'img/portfolio'
+FULL = PORTFOLIO + '/full'
 ROOT = 'img'
+P = 'photo_2026-09-18_19-03-'
 
 # src      — имя исходника
 # out      — куда сохранить (путь от корня проекта)
-# ratio    — итоговое соотношение сторон
+# ratio    — итоговое соотношение сторон; не задано — кадр не режется
 # anchor   — доля обрезки сверху при вертикальном кропе
-# width    — ширина результата
+# xanchor  — доля обрезки слева при горизонтальном кропе
+# width    — ширина результата; не задана — остаётся исходная
 # bright   — множитель яркости (1.0 — без изменений)
 # pre      — предварительный кроп в долях (left, top, right, bottom)
+# sharp    — резкость (1.0 — без изменений)
+# quality  — качество сжатия
 JOBS = [
     # ---------------- первый экран ----------------
     # вертикальный кадр — для телефонов, фон под текст
-    dict(src='photo_2026-09-18_19-03-21.jpg', out=ROOT + '/hero.webp',
+    dict(src=P + '21.jpg', out=ROOT + '/hero.webp',
          ratio=(4, 5), anchor=0.30, width=900, bright=1.05),
 
     # широкий кадр — для десктопа, тот же приём
-    dict(src='photo_2026-09-18_19-03-07.jpg', out=ROOT + '/hero-wide.webp',
+    dict(src=P + '07.jpg', out=ROOT + '/hero-wide.webp',
          ratio=(16, 9), anchor=0.30, width=1800, bright=1.03),
 
-    # ---------------- портфолио, 4:3 ----------------
-    dict(src='photo_2026-09-18_19-03-07.jpg', out=PORTFOLIO + '/trek-glyanec.webp',
-         ratio=(4, 3), anchor=0.45, width=800),
-
-    dict(src='photo_2026-09-18_19-03-02.jpg', out=PORTFOLIO + '/trek-karniz-vstavka.webp',
-         ratio=(4, 3), anchor=0.44, width=800),
-
-    dict(src='photo_2026-09-18_19-03-16.jpg', out=PORTFOLIO + '/tenevoy-profil-sanuzel.webp',
-         ratio=(4, 3), anchor=0.30, width=800),
-
-    # справа в кадре бутылка — отрезаем край
-    dict(src='photo_2026-09-18_19-03-29.jpg', out=PORTFOLIO + '/svetovaya-liniya-prihozhaya.webp',
-         ratio=(4, 3), anchor=0.45, width=800, pre=(0.0, 0.0, 0.84, 1.0)),
-
-    dict(src='photo_2026-09-18_19-03-20.jpg', out=PORTFOLIO + '/paryashchiy-kuhnya.webp',
-         ratio=(4, 3), anchor=0.36, width=800, bright=1.16),
-
-    dict(src='photo_2026-09-18_19-03-19.jpg', out=PORTFOLIO + '/led-soty-barbershop.webp',
-         ratio=(4, 3), anchor=0.22, width=800),
-
-    dict(src='photo_2026-09-18_19-03-23.jpg', out=PORTFOLIO + '/paryashchiy-podsvetka.webp',
-         ratio=(4, 3), anchor=0.30, width=800, bright=1.12),
-
-    dict(src='photo_2026-09-18_19-03-10.jpg', out=PORTFOLIO + '/tochechnye-sanuzel.webp',
-         ratio=(4, 3), anchor=0.52, width=800, bright=1.18),
-
-    dict(src='photo_2026-09-18_19-03-18.jpg', out=PORTFOLIO + '/montazh-svetovoy-linii.webp',
-         ratio=(4, 3), anchor=0.30, width=800, bright=1.06),
-
-    dict(src='photo_2026-09-18_19-03-12.jpg', out=PORTFOLIO + '/montazh-paryashchey.webp',
-         ratio=(4, 3), anchor=0.22, width=800),
-
-    dict(src='photo_2026-09-18_19-03-28.jpg', out=PORTFOLIO + '/trek-lyustra-detskaya.webp',
-         ratio=(4, 3), anchor=0.30, width=800, bright=1.06),
-
-    dict(src='photo_2026-09-18_19-03-32.jpg', out=PORTFOLIO + '/trek-podsvetka-stellazha.webp',
-         ratio=(4, 3), anchor=0.45, width=800),
-
-    # ---------------- запас под будущие посадочные ----------------
-    dict(src='photo_2026-09-18_19-03-09.jpg', out=PORTFOLIO + '/svetovaya-liniya-glyanec.webp',
-         ratio=(4, 3), anchor=0.34, width=800, bright=1.06),
-
-    dict(src='photo_2026-09-18_19-03-24.jpg', out=PORTFOLIO + '/trek-rgb-detskaya.webp',
-         ratio=(4, 3), anchor=0.30, width=800),
-
-    dict(src='photo_2026-09-18_19-03-33.jpg', out=PORTFOLIO + '/trek-kabinet.webp',
-         ratio=(4, 3), anchor=0.30, width=800, bright=1.06),
-
     # ---------------- превью для соцсетей ----------------
-    dict(src='photo_2026-09-18_19-03-07.jpg', out=ROOT + '/og-cover.jpg',
+    dict(src=P + '07.jpg', out=ROOT + '/og-cover.jpg',
          ratio=(1200, 630), anchor=0.45, width=1200),
 ]
+
+
+def work(src, name, anchor=0.5, xanchor=0.5, pre=None, bright=1.0):
+    """Работа в портфолио: карточка 3:4 и крупная версия для просмотра."""
+    common = dict(src=P + src + '.jpg', pre=pre, bright=bright, sharp=1.15)
+    return [
+        dict(common, out=PORTFOLIO + '/' + name + '.webp',
+             ratio=(3, 4), anchor=anchor, xanchor=xanchor, width=600, quality=84),
+        dict(common, out=FULL + '/' + name + '.webp', quality=82),
+    ]
+
+
+# ---------------- портфолио, 3:4 ----------------
+# почти все фото сняты вертикально — в карточке 3:4 кадр виден целиком
+JOBS += work('07', 'trek-glyanec', xanchor=0.30)               # горизонтальный кадр: держим угол рамки трека
+JOBS += work('02', 'trek-karniz-vstavka', pre=(0, 0.08, 1, 1))  # сверху проём в потолке
+JOBS += work('16', 'tenevoy-profil-sanuzel')
+JOBS += work('29', 'svetovaya-liniya-prihozhaya', anchor=0.45, pre=(0, 0, 0.84, 1))   # справа бутылка
+JOBS += work('09', 'svetovaya-liniya-glyanec', pre=(0, 0, 1, 0.80), bright=1.06)      # внизу доски на полу
+JOBS += work('20', 'paryashchiy-kuhnya', xanchor=0.35, pre=(0, 0, 1, 0.80), bright=1.16)  # внизу плёнка
+JOBS += work('23', 'paryashchiy-podsvetka', pre=(0, 0.07, 1, 1), bright=1.12)        # сверху наклейка на стене
+JOBS += work('19', 'led-soty-barbershop', pre=(0, 0, 1, 0.97))  # снизу в кадр попал человек
+JOBS += work('10', 'tochechnye-sanuzel', bright=1.18)
+JOBS += work('18', 'montazh-svetovoy-linii', pre=(0, 0.04, 1, 1), bright=1.06)
+JOBS += work('12', 'montazh-paryashchey', pre=(0, 0, 1, 0.69))  # внизу стремянка и инструмент
+JOBS += work('28', 'trek-lyustra-detskaya', bright=1.06)
+
+# ---------------- запас под будущие посадочные ----------------
+JOBS += work('32', 'trek-podsvetka-stellazha')                  # горизонтальный кадр
+JOBS += work('24', 'trek-rgb-detskaya')
+JOBS += work('33', 'trek-kabinet', bright=1.06)
 
 
 def pre_crop(im, box):
@@ -95,14 +87,14 @@ def pre_crop(im, box):
     return im.crop((int(w * l), int(h * t), int(w * r), int(h * b)))
 
 
-def crop_ratio(im, ratio, anchor):
-    """Обрезает до нужного соотношения; anchor — доля отступа сверху."""
+def crop_ratio(im, ratio, anchor, xanchor=0.5):
+    """Обрезает до нужного соотношения; anchor — доля отступа сверху, xanchor — слева."""
     target = ratio[0] / ratio[1]
     w, h = im.size
 
     if w / h > target:                         # слишком широкое — режем по бокам
         new_w = int(round(h * target))
-        left = (w - new_w) // 2
+        left = max(0, min(int(round((w - new_w) * xanchor)), w - new_w))
         return im.crop((left, 0, left + new_w, h))
 
     new_h = int(round(w / target))             # слишком высокое — режем сверху/снизу
@@ -110,7 +102,7 @@ def crop_ratio(im, ratio, anchor):
     return im.crop((0, top, w, top + new_h))
 
 
-def enhance(im, bright):
+def enhance(im, bright, sharp):
     """Мягко вытягиваем тени, не трогая пересветы на белом полотне."""
     try:
         im = ImageOps.autocontrast(im, cutoff=(0.8, 0.0), preserve_tone=True)
@@ -119,12 +111,12 @@ def enhance(im, bright):
     if bright != 1.0:
         im = ImageEnhance.Brightness(im).enhance(bright)
     im = ImageEnhance.Color(im).enhance(1.04)
-    im = ImageEnhance.Sharpness(im).enhance(1.35)
+    im = ImageEnhance.Sharpness(im).enhance(sharp)
     return im
 
 
 def main():
-    os.makedirs(PORTFOLIO, exist_ok=True)
+    os.makedirs(FULL, exist_ok=True)
 
     for job in JOBS:
         src = os.path.join(SRC, job['src'])
@@ -135,20 +127,21 @@ def main():
         im = ImageOps.exif_transpose(Image.open(src)).convert('RGB')
         if job.get('pre'):
             im = pre_crop(im, job['pre'])
-        im = crop_ratio(im, job['ratio'], job['anchor'])
-
-        width = job['width']
-        height = int(round(width * job['ratio'][1] / job['ratio'][0]))
-        im = im.resize((width, height), Image.LANCZOS)
-        im = enhance(im, job.get('bright', 1.0))
+        if job.get('ratio'):
+            im = crop_ratio(im, job['ratio'], job.get('anchor', 0.5), job.get('xanchor', 0.5))
+        if job.get('width'):
+            w = job['width']
+            r = job.get('ratio') or im.size
+            im = im.resize((w, int(round(w * r[1] / r[0]))), Image.LANCZOS)
+        im = enhance(im, job.get('bright', 1.0), job.get('sharp', 1.35))
 
         out = job['out']
         if out.endswith('.jpg'):
-            im.save(out, 'JPEG', quality=86, optimize=True, progressive=True)
+            im.save(out, 'JPEG', quality=job.get('quality', 86), optimize=True, progressive=True)
         else:
-            im.save(out, 'WEBP', quality=82, method=6)
+            im.save(out, 'WEBP', quality=job.get('quality', 82), method=6)
 
-        print('%-46s %sx%s  %d КБ' % (out, width, height, os.path.getsize(out) // 1024))
+        print('%-52s %sx%s  %d КБ' % (out, im.size[0], im.size[1], os.path.getsize(out) // 1024))
 
 
 if __name__ == '__main__':

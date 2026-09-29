@@ -30,7 +30,7 @@ if (location.hostname.endsWith('github.io')) {
 
 <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="fonts/onest-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="css/style.css?v=16">
+<link rel="stylesheet" href="css/style.css?v=17">
 
 <script type="application/ld+json">
 {
@@ -140,8 +140,8 @@ if (location.hostname.endsWith('github.io')) {
       <a href="#services">Услуги</a>
       <a href="#calc">Калькулятор</a>
       <a href="#portfolio">Работы</a>
+      <a href="#reviews">Отзывы</a>
       <a href="#steps">Как работаем</a>
-      <a href="#svyaz">Контакты</a>
     </nav>
 
     <div class="header__contacts">
@@ -162,6 +162,7 @@ if (location.hostname.endsWith('github.io')) {
     <a href="#services">Услуги</a>
     <a href="#calc">Калькулятор</a>
     <a href="#portfolio">Наши работы</a>
+    <a href="#reviews">Отзывы</a>
     <a href="#steps">Как работаем</a>
     <a href="#svyaz">Контакты</a>
   </nav>
@@ -400,7 +401,7 @@ if (location.hostname.endsWith('github.io')) {
         <h2 class="h2">Объекты в Ижевске и по Удмуртии</h2>
         <p class="lead">Свои фото с объектов, без стоков. Нажмите на карточку, чтобы посмотреть крупнее.</p>
       </div>
-      <a href="https://vk.ru/club235965748" class="link-arrow" target="_blank" rel="noopener">Все работы и отзывы в ВК
+      <a href="https://vk.ru/club235965748" class="link-arrow" target="_blank" rel="noopener">Все работы в ВК
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
     </div>
@@ -417,8 +418,10 @@ if (location.hostname.endsWith('github.io')) {
 
     <div class="works">
       <button class="work" type="button" data-tags="track" aria-label="Открыть фото: Трековая система на глянце">
-        <img src="img/portfolio/trek-glyanec.webp" width="800" height="600" loading="lazy" alt="Натяжной потолок с магнитной трековой системой на глянцевом полотне, Ижевск" data-ph="Трековая система на глянце">
-        <span class="work__zoom" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span>
+        <span class="work__media">
+          <img src="img/portfolio/trek-glyanec.webp" data-full="img/portfolio/full/trek-glyanec.webp" width="600" height="800" loading="lazy" alt="Натяжной потолок с магнитной трековой системой на глянцевом полотне, Ижевск" data-ph="Трековая система на глянце">
+          <span class="work__zoom" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span>
+        </span>
         <span class="work__body">
           <span class="work__title">Трековая система на глянце</span>
           <span class="work__meta">Магнитный шинопровод · Г-образная раскладка</span>
@@ -426,8 +429,10 @@ if (location.hostname.endsWith('github.io')) {
       </button>
 
       <button class="work" type="button" data-tags="track cornice shadow" aria-label="Открыть фото: Холл с трековым контуром">
-        <img src="img/portfolio/trek-karniz-vstavka.webp" width="800" height="600" loading="lazy" alt="Замкнутый контур трековой системы, скрытый карниз и чёрная вставка по периметру, Ижевск" data-ph="Холл с трековым контуром">
-        <span class="work__zoom" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span>
+        <span class="work__media">
+          <img src="img/portfolio/trek-karniz-vstavka.webp" data-full="img/portfolio/full/trek-karniz-vstavka.webp" width="600" height="800" loading="lazy" alt="Замкнутый контур трековой системы, скрытый карниз и чёрная вставка по периметру, Ижевск" data-ph="Холл с трековым контуром">
+          <span class="work__zoom" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span>
+        </span>
         <span class="work__body">
           <span class="work__title">Холл с трековым контуром</span>
           <span class="work__meta">Замкнутая рамка трека · скрытый карниз · чёрная вставка</span>
@@ -435,8 +440,10 @@ if (location.hostname.endsWith('github.io')) {
       </button>
 
       <button class="work" type="button" data-tags="shadow" aria-label="Открыть фото: Санузел с теневым профилем">
-        <img src="img/portfolio/tenevoy-profil-sanuzel.webp" width="800" height="600" loading="lazy" alt="Натяжной потолок с теневым профилем EuroKraab в санузле, Ижевск" data-ph="Санузел с теневым профилем">
-        <span class="work__zoom" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span>
+        <span class="work__media">
+          <img src="img/portfolio/tenevoy-profil-sanuzel.webp" data-full="img/portfolio/full/tenevoy-profil-sanuzel.webp" width="600" height="800" loading="lazy" alt="Натяжной потолок с теневым профилем EuroKraab в санузле, Ижевск" data-ph="Санузел с теневым профилем">
+          <span class="work__zoom" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span>
+        </span>
         <span class="work__body">
           <span class="work__title">Санузел с теневым профилем</span>
           <span class="work__meta">Теневой шов по периметру · 4 точечных светильника</span>
@@ -444,8 +451,10 @@ if (location.hostname.endsWith('github.io')) {
       </button>
 
       <button class="work" type="button" data-tags="line" aria-label="Открыть фото: Световая линия в прихожей">
-        <img src="img/portfolio/svetovaya-liniya-prihozhaya.webp" width="800" height="600" loading="lazy" alt="Световая линия 3 см со встроенными точечными светильниками в прихожей, Ижевск" data-ph="Световая линия в прихожей">
-        <span class="work__zoom" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span>
+        <span class="work__media">
+          <img src="img/portfolio/svetovaya-liniya-prihozhaya.webp" data-full="img/portfolio/full/svetovaya-liniya-prihozhaya.webp" width="600" height="800" loading="lazy" alt="Световая линия 3 см со встроенными точечными светильниками в прихожей, Ижевск" data-ph="Световая линия в прихожей">
+          <span class="work__zoom" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span>
+        </span>
         <span class="work__body">
           <span class="work__title">Световая линия в прихожей</span>
           <span class="work__meta">Линия 3 см со встроенными светильниками</span>
@@ -453,8 +462,10 @@ if (location.hostname.endsWith('github.io')) {
       </button>
 
       <button class="work" type="button" data-tags="line" aria-label="Открыть фото: Световая линия на глянце">
-        <img src="img/portfolio/svetovaya-liniya-glyanec.webp" width="800" height="600" loading="lazy" alt="Прямая световая линия с поликарбонатным рассеивателем на глянцевом потолке, Ижевск" data-ph="Световая линия на глянце">
-        <span class="work__zoom" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span>
+        <span class="work__media">
+          <img src="img/portfolio/svetovaya-liniya-glyanec.webp" data-full="img/portfolio/full/svetovaya-liniya-glyanec.webp" width="600" height="800" loading="lazy" alt="Прямая световая линия с поликарбонатным рассеивателем на глянцевом потолке, Ижевск" data-ph="Световая линия на глянце">
+          <span class="work__zoom" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span>
+        </span>
         <span class="work__body">
           <span class="work__title">Световая линия на глянце</span>
           <span class="work__meta">Ровный свет без точек и засветов</span>
@@ -462,8 +473,10 @@ if (location.hostname.endsWith('github.io')) {
       </button>
 
       <button class="work" type="button" data-tags="floating cornice" aria-label="Открыть фото: Кухня с парящим потолком">
-        <img src="img/portfolio/paryashchiy-kuhnya.webp" width="800" height="600" loading="lazy" alt="Парящий натяжной потолок с контурной подсветкой и подвесной люстрой на кухне, Ижевск" data-ph="Кухня с парящим потолком">
-        <span class="work__zoom" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span>
+        <span class="work__media">
+          <img src="img/portfolio/paryashchiy-kuhnya.webp" data-full="img/portfolio/full/paryashchiy-kuhnya.webp" width="600" height="800" loading="lazy" alt="Парящий натяжной потолок с контурной подсветкой и подвесной люстрой на кухне, Ижевск" data-ph="Кухня с парящим потолком">
+          <span class="work__zoom" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span>
+        </span>
         <span class="work__body">
           <span class="work__title">Кухня с парящим потолком</span>
           <span class="work__meta">Контурная подсветка · люстра · трековые споты</span>
@@ -471,8 +484,10 @@ if (location.hostname.endsWith('github.io')) {
       </button>
 
       <button class="work" type="button" data-tags="floating" aria-label="Открыть фото: Парящий потолок с подсветкой">
-        <img src="img/portfolio/paryashchiy-podsvetka.webp" width="800" height="600" loading="lazy" alt="Парящий потолок с подсветкой по всему периметру, матовое полотно, Ижевск" data-ph="Парящий потолок с подсветкой">
-        <span class="work__zoom" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span>
+        <span class="work__media">
+          <img src="img/portfolio/paryashchiy-podsvetka.webp" data-full="img/portfolio/full/paryashchiy-podsvetka.webp" width="600" height="800" loading="lazy" alt="Парящий потолок с подсветкой по всему периметру, матовое полотно, Ижевск" data-ph="Парящий потолок с подсветкой">
+          <span class="work__zoom" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span>
+        </span>
         <span class="work__body">
           <span class="work__title">Парящий потолок с подсветкой</span>
           <span class="work__meta">Свет по всему периметру · матовое полотно</span>
@@ -480,8 +495,10 @@ if (location.hostname.endsWith('github.io')) {
       </button>
 
       <button class="work" type="button" data-tags="soty" aria-label="Открыть фото: Барбершоп: модульные LED-соты">
-        <img src="img/portfolio/led-soty-barbershop.webp" width="800" height="600" loading="lazy" alt="Модульные LED-соты на потолке барбершопа, Ижевск" data-ph="Барбершоп: модульные LED-соты">
-        <span class="work__zoom" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span>
+        <span class="work__media">
+          <img src="img/portfolio/led-soty-barbershop.webp" data-full="img/portfolio/full/led-soty-barbershop.webp" width="600" height="800" loading="lazy" alt="Модульные LED-соты на потолке барбершопа, Ижевск" data-ph="Барбершоп: модульные LED-соты">
+          <span class="work__zoom" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span>
+        </span>
         <span class="work__body">
           <span class="work__title">Барбершоп: модульные LED-соты</span>
           <span class="work__meta">Шестигранные модули · коммерческое помещение</span>
@@ -489,8 +506,10 @@ if (location.hostname.endsWith('github.io')) {
       </button>
 
       <button class="work" type="button" data-tags="cornice" aria-label="Открыть фото: Санузел под ключ">
-        <img src="img/portfolio/tochechnye-sanuzel.webp" width="800" height="600" loading="lazy" alt="Натяжной потолок в санузле с точечными светильниками и подсветкой ниши, Ижевск" data-ph="Санузел под ключ">
-        <span class="work__zoom" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span>
+        <span class="work__media">
+          <img src="img/portfolio/tochechnye-sanuzel.webp" data-full="img/portfolio/full/tochechnye-sanuzel.webp" width="600" height="800" loading="lazy" alt="Натяжной потолок в санузле с точечными светильниками и подсветкой ниши, Ижевск" data-ph="Санузел под ключ">
+          <span class="work__zoom" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span>
+        </span>
         <span class="work__body">
           <span class="work__title">Санузел под ключ</span>
           <span class="work__meta">Точечные светильники · подсветка ниши</span>
@@ -498,8 +517,10 @@ if (location.hostname.endsWith('github.io')) {
       </button>
 
       <button class="work" type="button" data-tags="line" aria-label="Открыть фото: Монтаж световой линии">
-        <img src="img/portfolio/montazh-svetovoy-linii.webp" width="800" height="600" loading="lazy" alt="Монтаж П-образной световой линии на черновом потолке до натяжки полотна, Ижевск" data-ph="Монтаж световой линии">
-        <span class="work__zoom" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span>
+        <span class="work__media">
+          <img src="img/portfolio/montazh-svetovoy-linii.webp" data-full="img/portfolio/full/montazh-svetovoy-linii.webp" width="600" height="800" loading="lazy" alt="Монтаж П-образной световой линии на черновом потолке до натяжки полотна, Ижевск" data-ph="Монтаж световой линии">
+          <span class="work__zoom" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span>
+        </span>
         <span class="work__body">
           <span class="work__title">Монтаж световой линии</span>
           <span class="work__meta">П-образная линия до натяжки полотна</span>
@@ -507,8 +528,10 @@ if (location.hostname.endsWith('github.io')) {
       </button>
 
       <button class="work" type="button" data-tags="line floating" aria-label="Открыть фото: Монтаж парящей конструкции">
-        <img src="img/portfolio/montazh-paryashchey.webp" width="800" height="600" loading="lazy" alt="Монтаж парящей конструкции со светодиодной подсветкой по контуру, Ижевск" data-ph="Монтаж парящей конструкции">
-        <span class="work__zoom" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span>
+        <span class="work__media">
+          <img src="img/portfolio/montazh-paryashchey.webp" data-full="img/portfolio/full/montazh-paryashchey.webp" width="600" height="800" loading="lazy" alt="Монтаж парящей конструкции со светодиодной подсветкой по контуру, Ижевск" data-ph="Монтаж парящей конструкции">
+          <span class="work__zoom" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span>
+        </span>
         <span class="work__body">
           <span class="work__title">Монтаж парящей конструкции</span>
           <span class="work__meta">Профиль с подсветкой по контуру</span>
@@ -516,8 +539,10 @@ if (location.hostname.endsWith('github.io')) {
       </button>
 
       <button class="work" type="button" data-tags="track" aria-label="Открыть фото: Детская с трековым светом">
-        <img src="img/portfolio/trek-lyustra-detskaya.webp" width="800" height="600" loading="lazy" alt="Натяжной потолок в детской с трековыми спотами и люстрой, Ижевск" data-ph="Детская с трековым светом">
-        <span class="work__zoom" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span>
+        <span class="work__media">
+          <img src="img/portfolio/trek-lyustra-detskaya.webp" data-full="img/portfolio/full/trek-lyustra-detskaya.webp" width="600" height="800" loading="lazy" alt="Натяжной потолок в детской с трековыми спотами и люстрой, Ижевск" data-ph="Детская с трековым светом">
+          <span class="work__zoom" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span>
+        </span>
         <span class="work__body">
           <span class="work__title">Детская с трековым светом</span>
           <span class="work__meta">Трек со спотами · люстра-самолёт</span>
@@ -533,6 +558,101 @@ if (location.hostname.endsWith('github.io')) {
     <div class="section-cta">
       <p class="section-cta__text">Хотите так же у себя?</p>
       <a class="btn btn--gold btn--lg" href="#svyaz">Записаться на бесплатный замер</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ ОТЗЫВЫ ============================ -->
+<!-- Тексты — дословно с Авито и ВКонтакте, поправлены только пробелы и опечатки.
+     Новый отзыв — скопировать карточку <figure class="review"> и поменять данные. -->
+<section class="section section--alt" id="reviews">
+  <div class="container">
+    <div class="section-head section-head--row">
+      <div>
+        <span class="eyebrow">Отзывы</span>
+        <h2 class="h2">Что пишут заказчики</h2>
+        <p class="lead">Отзывы с Авито и из нашей группы ВКонтакте — так, как их оставили люди.</p>
+      </div>
+      <div class="reviews-nav">
+        <button class="reviews-nav__btn" type="button" data-rev-prev aria-label="Предыдущий отзыв" aria-controls="reviews-track">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+        </button>
+        <button class="reviews-nav__btn" type="button" data-rev-next aria-label="Следующий отзыв" aria-controls="reviews-track">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="reviews" id="reviews-track" data-reviews tabindex="0" role="region" aria-label="Отзывы заказчиков, листаются вбок">
+      <figure class="review">
+        <figcaption class="review__head">
+          <span class="review__avatar" aria-hidden="true">Л</span>
+          <span><b class="review__name">Лариса</b><span class="review__meta">17 сентября · Авито</span></span>
+        </figcaption>
+        <div class="review__rating"><span class="review__stars" role="img" aria-label="Оценка 5 из 5"></span><span class="review__deal">Сделка состоялась</span></div>
+        <blockquote class="review__text"><p>Монтажники помогли определиться с материалом полотна и грамотно расположить светильники. Работали аккуратно, использовали современное оборудование и оставили после себя минимум пыли и мусора. Хочу отметить качественный монтаж натяжных потолков!</p></blockquote>
+      </figure>
+
+      <figure class="review">
+        <figcaption class="review__head">
+          <span class="review__avatar" aria-hidden="true">О</span>
+          <span><b class="review__name">Ольга</b><span class="review__meta">5 сентября · Авито</span></span>
+        </figcaption>
+        <div class="review__rating"><span class="review__stars" role="img" aria-label="Оценка 5 из 5"></span><span class="review__deal">Сделка состоялась</span></div>
+        <blockquote class="review__text"><p>Быстро договорились на замеры. Понравилось, что сразу озвучили цену. Сделали потолки через неделю. Результат порадовал.</p></blockquote>
+      </figure>
+
+      <figure class="review">
+        <figcaption class="review__head">
+          <span class="review__avatar" aria-hidden="true">Р</span>
+          <span><b class="review__name">Радик А.</b><span class="review__meta">16 июня · ВКонтакте</span></span>
+        </figcaption>
+        <div class="review__rating"><span class="review__stars" role="img" aria-label="Оценка 5 из 5"></span></div>
+        <blockquote class="review__text"><p>Ребята толковые, ответственные и аккуратные. Подбирают лучшее решение под бюджет. Большой опыт работы. Работают не за «шабашку», а дорожат репутацией. Добрые, вежливые и грамотные мастера. Рекомендую!</p></blockquote>
+      </figure>
+
+      <figure class="review">
+        <figcaption class="review__head">
+          <span class="review__avatar" aria-hidden="true">Н</span>
+          <span><b class="review__name">Наташа</b><span class="review__meta">25 августа · Авито</span></span>
+        </figcaption>
+        <div class="review__rating"><span class="review__stars" role="img" aria-label="Оценка 5 из 5"></span><span class="review__deal">Сделка состоялась</span></div>
+        <blockquote class="review__text"><p>Благодарю команду Руслана за отлично проделанную работу! Быстро приехали на замер. По оплате даже ниже, чем в других компаниях! Спасибо за ванную комнату с вентиляцией, сделали нам как нужно было! Ребятам спасибо! Рекомендую!</p></blockquote>
+      </figure>
+
+      <figure class="review">
+        <figcaption class="review__head">
+          <span class="review__avatar" aria-hidden="true">И</span>
+          <span><b class="review__name">Игорь</b><span class="review__meta">24 сентября · Авито</span></span>
+        </figcaption>
+        <div class="review__rating"><span class="review__stars" role="img" aria-label="Оценка 5 из 5"></span><span class="review__deal">Сделка состоялась</span></div>
+        <blockquote class="review__text"><p>Профессионалы своего дела. Натянули потолок быстро и качественно. И цена адекватная.</p></blockquote>
+      </figure>
+
+      <figure class="review">
+        <figcaption class="review__head">
+          <span class="review__avatar" aria-hidden="true">Н</span>
+          <span><b class="review__name">Наталия</b><span class="review__meta">26 сентября · Авито</span></span>
+        </figcaption>
+        <div class="review__rating"><span class="review__stars" role="img" aria-label="Оценка 5 из 5"></span><span class="review__deal">Сделка состоялась</span></div>
+        <blockquote class="review__text"><p>Задачей стоял простой матовый потолок общей площадью 19 кв.м. Руслан и его команда справились с ней просто отлично и не затратили на это много времени. Я очень довольна результатом и планирую в дальнейшем еще воспользоваться услугами этих ребят-потолочников.</p></blockquote>
+      </figure>
+
+      <figure class="review">
+        <figcaption class="review__head">
+          <span class="review__avatar" aria-hidden="true">М</span>
+          <span><b class="review__name">Марина С.</b><span class="review__meta">1 сентября · Авито</span></span>
+        </figcaption>
+        <div class="review__rating"><span class="review__stars" role="img" aria-label="Оценка 5 из 5"></span><span class="review__deal">Сделка состоялась</span></div>
+        <blockquote class="review__text"><p>Быстро и хорошо натянули потолок, главное — качественно. Приехали вовремя, всё сделали в срок. Советую</p></blockquote>
+      </figure>
+    </div>
+
+    <div class="reviews-foot">
+      <div class="reviews-progress" aria-hidden="true"><span data-rev-progress></span></div>
+      <a href="https://vk.ru/club235965748" class="link-arrow" target="_blank" rel="noopener">Ещё отзывы — в группе ВКонтакте
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
     </div>
   </div>
 </section>
@@ -762,6 +882,7 @@ if (location.hostname.endsWith('github.io')) {
           <li><a href="#services">Услуги</a></li>
           <li><a href="#calc">Калькулятор</a></li>
           <li><a href="#portfolio">Наши работы</a></li>
+          <li><a href="#reviews">Отзывы</a></li>
           <li><a href="#steps">Как работаем</a></li>
           <li><a href="#faq">Вопросы</a></li>
           <li><a href="#svyaz">Контакты</a></li>
@@ -841,7 +962,7 @@ if (location.hostname.endsWith('github.io')) {
   </figure>
 </div>
 
-<script src="js/main.js?v=16" defer></script>
-<script src="js/calc.js?v=16" defer></script>
+<script src="js/main.js?v=17" defer></script>
+<script src="js/calc.js?v=17" defer></script>
 </body>
 </html>
