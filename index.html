@@ -30,7 +30,7 @@ if (location.hostname.endsWith('github.io')) {
 
 <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="fonts/onest-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="css/style.css?v=18">
+<link rel="stylesheet" href="css/style.css?v=19">
 
 <script type="application/ld+json">
 {
@@ -698,6 +698,61 @@ if (location.hostname.endsWith('github.io')) {
         </div>
       </div>
     </div>
+
+    <!-- Сертификаты на полотна. Превью — img/docs/, крупные версии — img/docs/full/
+         (готовит _tools/prepare_images.py). У многостраничного документа страницы
+         перечислены в data-pages через пробел; data-title и data-meta — подпись в просмотре. -->
+    <div class="docs" id="docs">
+      <div class="docs__head">
+        <h3 class="docs__title">Сертификаты на полотна</h3>
+        <p class="docs__lead">Работаем на плёнках MSD, TEQTUM и Deken — на все есть сертификаты соответствия, на Deken ещё и санитарная экспертиза. Нажмите на документ, чтобы рассмотреть его целиком.</p>
+      </div>
+
+      <div class="docs__grid">
+        <button class="doc" type="button" aria-label="Открыть документ: MSD, сертификат соответствия"
+                data-pages="img/docs/full/msd-sertifikat.webp"
+                data-title="MSD — сертификат соответствия"
+                data-meta="Плёнка ПВХ серий Legend, Classic, Premium, Perfekt: пожарно-технические характеристики по ГОСТ. Действует до 18.09.2028.">
+          <span class="doc__paper"><img src="img/docs/msd-sertifikat.webp" width="480" height="679" loading="lazy" alt="Сертификат соответствия на плёнку ПВХ MSD для натяжных потолков"></span>
+          <span class="doc__brand">MSD</span>
+          <span class="doc__type">Сертификат соответствия</span>
+          <span class="doc__meta">Пожарная безопасность · до 18.09.2028</span>
+        </button>
+
+        <button class="doc" type="button" aria-label="Открыть документ: TEQTUM КМ1, сертификат соответствия"
+                data-pages="img/docs/full/teqtum-km1-sertifikat.webp"
+                data-title="TEQTUM КМ1 — сертификат соответствия"
+                data-meta="Обязательная сертификация, орган — ВНИИПО МЧС России. Группа горючести Г1, воспламеняемости В1. Действует до 23.03.2030.">
+          <span class="doc__paper"><img src="img/docs/teqtum-km1-sertifikat.webp" width="480" height="679" loading="lazy" alt="Сертификат соответствия на плёнку ПВХ TEQTUM КМ1 для натяжных потолков"></span>
+          <span class="doc__brand">TEQTUM КМ1</span>
+          <span class="doc__type">Сертификат соответствия</span>
+          <span class="doc__meta">Пожарная безопасность · до 23.03.2030</span>
+        </button>
+
+        <button class="doc" type="button" aria-label="Открыть документ: Deken, сертификат соответствия"
+                data-pages="img/docs/full/deken-sertifikat.webp"
+                data-title="Deken — сертификат соответствия"
+                data-meta="Плёнка ПВХ Deken: Matte, Gloss, Satin. Требования пожарной безопасности, 123-ФЗ. Действует до 16.12.2027.">
+          <span class="doc__paper"><img src="img/docs/deken-sertifikat.webp" width="480" height="679" loading="lazy" alt="Сертификат соответствия на плёнку ПВХ Deken для натяжных потолков"></span>
+          <span class="doc__brand">Deken</span>
+          <span class="doc__type">Сертификат соответствия</span>
+          <span class="doc__meta">Пожарная безопасность · до 16.12.2027</span>
+        </button>
+
+        <button class="doc" type="button" aria-label="Открыть документ: Deken, экспертное заключение о санитарной безопасности, 3 страницы"
+                data-pages="img/docs/full/deken-sanpin-1.webp img/docs/full/deken-sanpin-2.webp img/docs/full/deken-sanpin-3.webp"
+                data-title="Deken — экспертное заключение № 5537"
+                data-meta="Санитарно-эпидемиологическая экспертиза: плёнка соответствует требованиям ЕАЭС к полимерным строительным материалам.">
+          <span class="doc__paper">
+            <img src="img/docs/deken-sanpin-1.webp" width="480" height="679" loading="lazy" alt="Экспертное заключение о санитарной безопасности плёнки Deken">
+            <span class="doc__pages" aria-hidden="true">3 стр.</span>
+          </span>
+          <span class="doc__brand">Deken</span>
+          <span class="doc__type">Экспертное заключение</span>
+          <span class="doc__meta">Санитарная безопасность · 20.01.2025</span>
+        </button>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -883,6 +938,7 @@ if (location.hostname.endsWith('github.io')) {
           <li><a href="#calc">Калькулятор</a></li>
           <li><a href="#portfolio">Наши работы</a></li>
           <li><a href="#reviews">Отзывы</a></li>
+          <li><a href="#docs">Сертификаты</a></li>
           <li><a href="#steps">Как работаем</a></li>
           <li><a href="#faq">Вопросы</a></li>
           <li><a href="#svyaz">Контакты</a></li>
@@ -961,7 +1017,7 @@ if (location.hostname.endsWith('github.io')) {
   </figure>
 </div>
 
-<script src="js/main.js?v=18" defer></script>
-<script src="js/calc.js?v=18" defer></script>
+<script src="js/main.js?v=19" defer></script>
+<script src="js/calc.js?v=19" defer></script>
 </body>
 </html>

@@ -1,6 +1,6 @@
 /* ==========================================================================
    Натяжные потолки «ДаР» — общая логика
-   Меню, FAQ, фильтры портфолио, лайтбокс, отзывы, цели Метрики, reveal
+   Меню, FAQ, фильтры портфолио, лайтбокс (фото и сертификаты), отзывы, цели Метрики, reveal
    ========================================================================== */
 (function () {
   'use strict';
@@ -77,44 +77,67 @@
   });
 
   /* ==================================================================
-     4. Лайтбокс
+     4. Лайтбокс — фото работ и сертификаты
+     ------------------------------------------------------------------
+     Один просмотрщик на оба блока. Кадр — { src, alt, title, meta, doc },
+     листается внутри своего набора.
      ================================================================== */
   var lightbox = $('.lightbox');
+  var docs = $$('.doc');
 
   if (lightbox) {
     var lbImg = $('.lightbox img', lightbox);
     var lbCap = $('.lightbox__cap', lightbox);
-    var visible = [];
+    var lbPrev = $('.lightbox__nav--prev', lightbox);
+    var lbNext = $('.lightbox__nav--next', lightbox);
+    var items = [];
     var index = 0;
     var lastFocused = null;
 
-    /* в карточке — кадр 3:4, в просмотре — крупная версия без обрезки */
-    function fullSrc(node) {
-      var img = $('img', node);
-      return img.getAttribute('data-full') || img.getAttribute('src');
-    }
+    var LABELS = {
+      work: ['Просмотр фото объекта', 'Предыдущее фото', 'Следующее фото'],
+      doc:  ['Просмотр документа', 'Предыдущая страница', 'Следующая страница']
+    };
 
     function render() {
-      var node = visible[index];
-      if (!node) return;
-      var img = $('img', node);
-      lbImg.src = fullSrc(node);
-      lbImg.alt = img.getAttribute('alt') || '';
-      lbCap.innerHTML = '<b>' + $('.work__title', node).textContent + '</b>' +
-                        $('.work__meta', node).textContent;
+      var it = items[index];
+      if (!it) return;
+      lbImg.src = it.src;
+      lbImg.alt = it.alt;
+
+      // подпись собираем узлами, а не строкой HTML
+      lbCap.textContent = '';
+      var title = document.createElement('b');
+      title.textContent = it.title;
+      lbCap.appendChild(title);
+      lbCap.appendChild(document.createTextNode(it.meta));
+      if (it.doc) {
+        // мелкий текст сертификата удобнее читать в отдельной вкладке с зумом
+        var link = document.createElement('a');
+        link.className = 'lightbox__open';
+        link.href = it.src;
+        link.target = '_blank';
+        link.rel = 'noopener';
+        link.textContent = 'Открыть в полном размере';
+        lbCap.appendChild(link);
+      }
 
       // соседние кадры грузим заранее, чтобы листание шло без задержки
       [1, -1].forEach(function (d) {
-        var next = visible[(index + d + visible.length) % visible.length];
-        if (next && next !== node) new Image().src = fullSrc(next);
+        var next = items[(index + d + items.length) % items.length];
+        if (next && next !== it) new Image().src = next.src;
       });
     }
 
-    function open(node) {
-      visible = works.filter(function (w) { return !w.hidden; });
-      index = visible.indexOf(node);
-      if (index < 0) index = 0;
+    function open(list, start, kind) {
+      items = list;
+      index = Math.max(0, start);
       lastFocused = document.activeElement;
+      lightbox.setAttribute('aria-label', LABELS[kind][0]);
+      lbPrev.setAttribute('aria-label', LABELS[kind][1]);
+      lbNext.setAttribute('aria-label', LABELS[kind][2]);
+      lightbox.classList.toggle('lightbox--doc', kind === 'doc');
+      lightbox.classList.toggle('lightbox--single', items.length < 2);
       render();
       lightbox.classList.add('is-open');
       lightbox.setAttribute('aria-hidden', 'false');
@@ -130,19 +153,73 @@
     }
 
     function step(dir) {
-      index = (index + dir + visible.length) % visible.length;
+      if (items.length < 2) return;
+      index = (index + dir + items.length) % items.length;
       render();
     }
 
+    /* фото работ: только видимые после фильтра; в карточке — кадр 3:4, в просмотре — крупная версия */
     works.forEach(function (w) {
-      w.addEventListener('click', function () { open(w); });
+      w.addEventListener('click', function () {
+        var visible = works.filter(function (node) { return !node.hidden; });
+        var list = visible.map(function (node) {
+          var img = $('img', node);
+          return {
+            src: img.getAttribute('data-full') || img.getAttribute('src'),
+            alt: img.getAttribute('alt') || '',
+            title: $('.work__title', node).textContent,
+            meta: $('.work__meta', node).textContent
+          };
+        });
+        open(list, visible.indexOf(w), 'work');
+      });
+    });
+
+    /* сертификаты: все страницы всех документов подряд, у многостраничного — номер страницы */
+    var docItems = [];
+    var docStart = [];                  // с какого кадра начинается каждый документ
+
+    docs.forEach(function (d) {
+      var pages = d.getAttribute('data-pages').trim().split(/\s+/);
+      var alt = $('img', d).getAttribute('alt') || '';
+      var many = pages.length > 1;
+      docStart.push(docItems.length);
+      pages.forEach(function (src, i) {
+        docItems.push({
+          src: src,
+          alt: alt + (many ? ', страница ' + (i + 1) : ''),
+          title: d.getAttribute('data-title'),
+          meta: d.getAttribute('data-meta') + (many ? ' Страница ' + (i + 1) + ' из ' + pages.length + '.' : ''),
+          doc: true
+        });
+      });
+    });
+
+    docs.forEach(function (d, i) {
+      d.addEventListener('click', function () { open(docItems, docStart[i], 'doc'); });
     });
 
     $('.lightbox__close', lightbox).addEventListener('click', close);
-    $('.lightbox__nav--prev', lightbox).addEventListener('click', function () { step(-1); });
-    $('.lightbox__nav--next', lightbox).addEventListener('click', function () { step(1); });
+    lbPrev.addEventListener('click', function () { step(-1); });
+    lbNext.addEventListener('click', function () { step(1); });
     lightbox.addEventListener('click', function (e) {
       if (e.target === lightbox) close();
+    });
+
+    // на телефоне листаем пальцем; двумя пальцами — это зум, его не трогаем
+    var touchX = null;
+    var touchY = 0;
+    lightbox.addEventListener('touchstart', function (e) {
+      touchX = e.touches.length === 1 ? e.touches[0].clientX : null;
+      touchY = e.touches.length === 1 ? e.touches[0].clientY : 0;
+    }, { passive: true });
+    lightbox.addEventListener('touchend', function (e) {
+      if (touchX === null) return;
+      var dx = e.changedTouches[0].clientX - touchX;
+      var dy = e.changedTouches[0].clientY - touchY;
+      var zoomed = window.visualViewport && window.visualViewport.scale > 1.01;
+      touchX = null;
+      if (!zoomed && Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) step(dx < 0 ? 1 : -1);
     });
 
     document.addEventListener('keydown', function (e) {

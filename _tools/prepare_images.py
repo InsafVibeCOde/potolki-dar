@@ -13,6 +13,10 @@
 для просмотра в portfolio/full/. Крупная под 3:4 не режется, к ней применяется
 только pre — в просмотре кадр виден целиком.
 
+Сертификаты: превью листа A4 для карточки (480 px) и крупная версия для просмотра
+в docs/full/. Цвета и контраст не трогаем — это документ, а не фото.
+Исходники — в img/_source/docs/; страницы из PDF отрисованы в JPG заранее.
+
 Запуск из корня проекта:  python _tools/prepare_images.py
 """
 import os
@@ -21,6 +25,7 @@ from PIL import Image, ImageOps, ImageEnhance
 SRC = 'img/_source'
 PORTFOLIO = 'img/portfolio'
 FULL = PORTFOLIO + '/full'
+DOCS = 'img/docs'
 ROOT = 'img'
 P = 'photo_2026-09-18_19-03-'
 
@@ -34,6 +39,8 @@ P = 'photo_2026-09-18_19-03-'
 # pre      — предварительный кроп в долях (left, top, right, bottom)
 # sharp    — резкость (1.0 — без изменений)
 # quality  — качество сжатия
+# max_width — уменьшить до этой ширины, если исходник шире (не увеличивает)
+# plain    — без обработки цвета и контраста (документы)
 JOBS = [
     # ---------------- первый экран ----------------
     # вертикальный кадр — для телефонов, фон под текст
@@ -81,6 +88,27 @@ JOBS += work('24', 'trek-rgb-detskaya')
 JOBS += work('33', 'trek-kabinet', bright=1.06)
 
 
+def doc(src, name, pre=None, thumb=True):
+    """Документ: превью листа A4 для карточки и крупная версия для просмотра.
+    Превью нужно только первой странице — остальные открываются листанием."""
+    common = dict(src='docs/' + src, pre=pre, plain=True)
+    jobs = [dict(common, out=DOCS + '/full/' + name + '.webp', max_width=1000, quality=72)]
+    if thumb:
+        jobs.append(dict(common, out=DOCS + '/' + name + '.webp',
+                         ratio=(1000, 1414), anchor=0.0, width=480, sharp=1.2, quality=80))
+    return jobs
+
+
+# ---------------- сертификаты на полотна ----------------
+JOBS += doc('msd-sertifikat.jpg', 'msd-sertifikat')
+JOBS += doc('teqtum-km1-sertifikat.jpg', 'teqtum-km1-sertifikat',
+            pre=(0, 132 / 1280, 1, 1148 / 1280))                # скриншот: сверху и снизу чёрные поля
+JOBS += doc('deken-sertifikat.jpg', 'deken-sertifikat')
+JOBS += doc('deken-sanpin-1.jpg', 'deken-sanpin-1')             # экспертное заключение, 3 страницы
+JOBS += doc('deken-sanpin-2.jpg', 'deken-sanpin-2', thumb=False)
+JOBS += doc('deken-sanpin-3.jpg', 'deken-sanpin-3', thumb=False)
+
+
 def pre_crop(im, box):
     w, h = im.size
     l, t, r, b = box
@@ -117,6 +145,7 @@ def enhance(im, bright, sharp):
 
 def main():
     os.makedirs(FULL, exist_ok=True)
+    os.makedirs(DOCS + '/full', exist_ok=True)
 
     for job in JOBS:
         src = os.path.join(SRC, job['src'])
@@ -133,7 +162,13 @@ def main():
             w = job['width']
             r = job.get('ratio') or im.size
             im = im.resize((w, int(round(w * r[1] / r[0]))), Image.LANCZOS)
-        im = enhance(im, job.get('bright', 1.0), job.get('sharp', 1.35))
+        if job.get('max_width') and im.size[0] > job['max_width']:
+            w = job['max_width']
+            im = im.resize((w, int(round(w * im.size[1] / im.size[0]))), Image.LANCZOS)
+        if not job.get('plain'):
+            im = enhance(im, job.get('bright', 1.0), job.get('sharp', 1.35))
+        elif job.get('sharp'):                 # превью документа: только чуть резкости, чтобы текст не плыл
+            im = ImageEnhance.Sharpness(im).enhance(job['sharp'])
 
         out = job['out']
         if out.endswith('.jpg'):

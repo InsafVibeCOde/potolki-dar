@@ -714,17 +714,40 @@ h1,h2,h3,.h1,.h2,.h3{
 .lightbox img{max-height:74vh; width:auto; border-radius:var(--radius); box-shadow:var(--shadow-lg)}
 .lightbox__cap{margin-top:var(--s-4); text-align:center; color:var(--bg); font-size:15px; max-width:56ch}
 .lightbox__cap b{display:block; font-size:18px; margin-bottom:4px}
+/* кнопки поверх картинки: на телефоне фото и документ занимают всю ширину,
+   и прозрачные стрелки под ними терялись — поэтому тёмная подложка */
 .lightbox__close,.lightbox__nav{
-  position:absolute; display:grid; place-items:center;
+  position:absolute; z-index:1; display:grid; place-items:center;
   width:52px; height:52px; border-radius:50%;
-  background:rgba(250,248,245,.1); color:var(--bg);
-  border:1px solid rgba(250,248,245,.2);
+  background:rgba(28,26,24,.62); color:var(--bg);
+  border:1px solid rgba(250,248,245,.28);
+  -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px);
   transition:background-color var(--dur) var(--ease);
 }
-.lightbox__close:hover,.lightbox__nav:hover{background:rgba(250,248,245,.22)}
+.lightbox__close:hover,.lightbox__nav:hover{background:rgba(28,26,24,.85)}
 .lightbox__close{top:var(--s-4); right:var(--s-4)}
 .lightbox__nav--prev{left:var(--s-3); top:50%; transform:translateY(-50%)}
 .lightbox__nav--next{right:var(--s-3); top:50%; transform:translateY(-50%)}
+.lightbox--single .lightbox__nav{display:none}
+@media (max-width:639px){
+  .lightbox__nav{width:44px; height:44px}
+  .lightbox__nav--prev{left:var(--s-2)}
+  .lightbox__nav--next{right:var(--s-2)}
+  .lightbox__cap{font-size:14px}
+  .lightbox__cap b{font-size:16px}
+}
+
+/* документ в просмотре — выше, на белом листе и со ссылкой на полный размер */
+.lightbox--doc img{max-height:calc(100vh - 190px); background:#fff; border-radius:4px}
+@media (max-width:639px){
+  .lightbox--doc img{max-height:calc(100vh - 250px); max-height:calc(100dvh - 250px)}
+}
+.lightbox__open{
+  display:block; width:fit-content; margin:var(--s-3) auto 0;
+  color:var(--gold-light); font-weight:600; font-size:14.5px;
+  text-decoration:underline; text-underline-offset:3px;
+}
+.lightbox__open:hover{color:var(--gold)}
 
 /* --------------------------------------------------------------------------
    10b. Отзывы — лента со свайпом, на широких экранах ещё и стрелки
@@ -826,6 +849,39 @@ h1,h2,h3,.h1,.h2,.h3{
 .why__item svg{flex:none; color:var(--gold-deep)}
 .why__item h3{margin-bottom:var(--s-2)}
 .why__item p{font-size:15px; color:var(--ink-soft); line-height:1.5}
+
+/* сертификаты на полотна — в конце «Условий работы» */
+.docs{margin-top:var(--s-8); padding-top:var(--s-7); border-top:1px solid var(--border)}
+.docs__head{max-width:62ch; margin-bottom:var(--s-6)}
+.docs__title{font-size:clamp(22px,3vw,28px); font-weight:800; letter-spacing:-.02em; line-height:1.15}
+.docs__lead{margin-top:var(--s-3); font-size:16px; line-height:1.55; color:var(--ink-soft); text-wrap:pretty}
+.docs__grid{display:grid; grid-template-columns:repeat(2,1fr); gap:var(--s-5) var(--s-3)}
+@media (min-width:768px){ .docs__grid{grid-template-columns:repeat(4,1fr); gap:var(--s-6) var(--s-4)} }
+@media (min-width:1024px){ .docs__grid{column-gap:var(--s-5)} }
+
+.doc{display:flex; flex-direction:column; gap:2px; width:100%; text-align:left}
+.doc__paper{
+  position:relative; display:block;
+  margin-bottom:var(--s-3);
+  aspect-ratio:1000/1414;                  /* лист A4 */
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:6px; overflow:hidden;
+  box-shadow:0 1px 2px rgba(28,26,24,.06), 0 8px 20px rgba(28,26,24,.08);
+  transition:transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+}
+.doc__paper img{width:100%; height:100%; object-fit:cover; object-position:top}
+.doc:hover .doc__paper{transform:translateY(-4px); box-shadow:0 2px 4px rgba(28,26,24,.06), 0 18px 36px rgba(28,26,24,.14)}
+.doc__pages{
+  position:absolute; top:var(--s-2); right:var(--s-2);
+  padding:3px 9px; border-radius:99px;
+  background:var(--dark); color:var(--gold-light);
+  font-size:12px; font-weight:700; line-height:1.4;
+}
+.doc__brand{font-size:16.5px; font-weight:700; line-height:1.25}
+.doc:hover .doc__brand{color:var(--gold-deep)}
+.doc__type{font-size:14.5px; line-height:1.35}
+.doc__meta{font-size:13px; line-height:1.4; color:var(--ink-soft)}
 
 .steps{counter-reset:step; display:grid; gap:var(--s-5)}
 @media (min-width:768px){ .steps{grid-template-columns:repeat(4,1fr); gap:var(--s-4)} }
