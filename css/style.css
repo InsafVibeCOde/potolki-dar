@@ -1054,55 +1054,6 @@ h1,h2,h3,.h1,.h2,.h3{
 }
 
 /* --------------------------------------------------------------------------
-   17. Юридические страницы (политика обработки ПД)
-   -------------------------------------------------------------------------- */
-.legal{max-width:820px; margin-inline:auto; padding-block:var(--s-7) var(--s-8)}
-.legal h1{font-size:clamp(28px,4.4vw,40px); margin-bottom:var(--s-4)}
-.legal__meta{font-size:14px; color:var(--ink-soft); margin-bottom:var(--s-7)}
-.legal h2{
-  font-size:clamp(19px,2.6vw,24px); font-weight:700;
-  margin-top:var(--s-7); margin-bottom:var(--s-4);
-  padding-top:var(--s-5); border-top:1px solid var(--border);
-}
-.legal h3{font-size:17px; font-weight:700; margin-top:var(--s-5); margin-bottom:var(--s-3)}
-.legal p{margin-bottom:var(--s-4); font-size:16px; line-height:1.65}
-.legal ul{margin-bottom:var(--s-4); display:grid; gap:var(--s-2)}
-.legal ul li{position:relative; padding-left:22px; font-size:16px; line-height:1.6}
-.legal ul li::before{
-  content:''; position:absolute; left:4px; top:11px;
-  width:6px; height:6px; border-radius:50%; background:var(--gold-deep);
-}
-.legal ol{margin-bottom:var(--s-4); padding-left:22px; list-style:decimal; display:grid; gap:var(--s-2)}
-.legal ol li{font-size:16px; line-height:1.6; padding-left:4px}
-.legal a{color:var(--brown); text-decoration:underline; text-underline-offset:2px}
-.legal a:hover{color:var(--gold-deep)}
-.legal strong{font-weight:700}
-
-.legal__note{
-  padding:var(--s-5); margin-bottom:var(--s-6);
-  border:1px solid var(--border); border-left:3px solid var(--gold-deep);
-  border-radius:var(--radius-sm);
-  background:var(--bg-alt);
-  font-size:15px; line-height:1.55;
-}
-.legal__note b{display:block; margin-bottom:var(--s-2)}
-
-/* реквизиты, которые нужно подставить перед публикацией — чтобы нельзя было не заметить */
-.fill-me{
-  background:#FFE9A8; color:#5A3E00;
-  padding:1px 7px; border-radius:5px;
-  font-weight:700; font-size:.94em;
-  box-decoration-break:clone; -webkit-box-decoration-break:clone;
-}
-
-/* шапка внутренней страницы */
-.page-head{background:var(--dark); color:var(--bg); border-bottom:2px solid var(--line)}
-.page-head .container{display:flex; align-items:center; gap:var(--s-4); min-height:var(--header-h)}
-.page-head .logo{margin-right:auto}
-.page-head__phone{font-size:17px; font-weight:700; white-space:nowrap}
-.page-head__phone:hover{color:var(--gold)}
-
-/* --------------------------------------------------------------------------
    21. Хлебные крошки (для внутренних страниц)
    -------------------------------------------------------------------------- */
 .crumbs{display:flex; flex-wrap:wrap; gap:var(--s-2); padding-block:var(--s-4); font-size:13.5px; color:var(--ink-soft)}
