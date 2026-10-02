@@ -660,6 +660,13 @@ h1,h2,h3,.h1,.h2,.h3{
   }
 }
 
+/* на широких экранах сначала 2 ряда (на планшете 3), остальное — по кнопке «Показать ещё»;
+   класс ставит скрипт и снимает, когда включён фильтр */
+@media (min-width:640px){ .works.is-collapsed .work:nth-child(n+10){display:none} }
+@media (min-width:1024px){ .works.is-collapsed .work:nth-child(n+9){display:none} }
+.works-more{display:flex; justify-content:center; margin-top:var(--s-6)}
+.works-more[hidden]{display:none}
+
 .works-hint{
   display:none;
   margin-top:var(--s-4);

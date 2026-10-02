@@ -64,6 +64,32 @@
      ================================================================== */
   var filters = $$('.filter');
   var works = $$('.work');
+  var worksGrid = $('.works');
+  var more = $('[data-works-more]');
+  var currentTag = 'all';
+  var expanded = false;
+
+  function plural(n, one, few, many) {
+    var m10 = n % 10, m100 = n % 100;
+    if (m10 === 1 && m100 !== 11) return one;
+    if (m10 >= 2 && m10 <= 4 && (m100 < 12 || m100 > 14)) return few;
+    return many;
+  }
+
+  // работы, спрятанные сворачиванием (не фильтром): display:none даёт offsetParent === null
+  function collapsedWorks() {
+    return works.filter(function (w) { return !w.hidden && w.offsetParent === null; });
+  }
+
+  /* «Показать ещё»: на широких экранах сначала 2–3 ряда. На телефоне лента —
+     там сворачивание не действует, и кнопка сама прячется. С фильтром видно всё. */
+  function updateMore() {
+    if (!worksGrid || !more) return;
+    worksGrid.classList.toggle('is-collapsed', !expanded && currentTag === 'all');
+    var rest = collapsedWorks().length;
+    more.hidden = rest === 0;
+    $('button', more).textContent = 'Показать ещё ' + rest + ' ' + plural(rest, 'работу', 'работы', 'работ');
+  }
 
   filters.forEach(function (btn) {
     btn.addEventListener('click', function () {
@@ -73,8 +99,22 @@
         var match = tag === 'all' || (w.dataset.tags || '').split(' ').indexOf(tag) !== -1;
         w.hidden = !match;
       });
+      currentTag = tag;
+      updateMore();
     });
   });
+
+  if (more) {
+    $('button', more).addEventListener('click', function () {
+      var first = collapsedWorks()[0];
+      expanded = true;
+      updateMore();
+      // кнопка исчезает — фокус переносим на первую открывшуюся работу
+      if (first) first.focus({ preventScroll: true });
+    });
+    window.addEventListener('resize', updateMore);
+    updateMore();
+  }
 
   /* ==================================================================
      4. Лайтбокс — фото работ и сертификаты

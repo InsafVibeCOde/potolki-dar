@@ -27,7 +27,8 @@ PORTFOLIO = 'img/portfolio'
 FULL = PORTFOLIO + '/full'
 DOCS = 'img/docs'
 ROOT = 'img'
-P = 'photo_2026-09-18_19-03-'
+P = 'photo_2026-09-18_19-03-'      # первая партия фото: в work() передаётся только код, '07'
+N = 'photo_2026-10-02_'            # вторая партия: в work() — имя файла целиком
 
 # src      — имя исходника
 # out      — куда сохранить (путь от корня проекта)
@@ -58,8 +59,10 @@ JOBS = [
 
 
 def work(src, name, anchor=0.5, xanchor=0.5, pre=None, bright=1.0):
-    """Работа в портфолио: карточка 3:4 и крупная версия для просмотра."""
-    common = dict(src=P + src + '.jpg', pre=pre, bright=bright, sharp=1.15)
+    """Работа в портфолио: карточка 3:4 и крупная версия для просмотра.
+    src — код снимка первой партии ('07') или имя файла целиком."""
+    common = dict(src=src if src.endswith('.jpg') else P + src + '.jpg',
+                  pre=pre, bright=bright, sharp=1.15)
     return [
         dict(common, out=PORTFOLIO + '/' + name + '.webp',
              ratio=(3, 4), anchor=anchor, xanchor=xanchor, width=600, quality=84),
@@ -72,7 +75,6 @@ def work(src, name, anchor=0.5, xanchor=0.5, pre=None, bright=1.0):
 JOBS += work('07', 'trek-glyanec', xanchor=0.30)               # горизонтальный кадр: держим угол рамки трека
 JOBS += work('02', 'trek-karniz-vstavka', pre=(0, 0.08, 1, 1))  # сверху проём в потолке
 JOBS += work('16', 'tenevoy-profil-sanuzel')
-JOBS += work('29', 'svetovaya-liniya-prihozhaya', anchor=0.45, pre=(0, 0, 0.84, 1))   # справа бутылка
 JOBS += work('09', 'svetovaya-liniya-glyanec', pre=(0, 0, 1, 0.80), bright=1.06)      # внизу доски на полу
 JOBS += work('20', 'paryashchiy-kuhnya', xanchor=0.35, pre=(0, 0, 1, 0.80), bright=1.16)  # внизу плёнка
 JOBS += work('23', 'paryashchiy-podsvetka', pre=(0, 0.07, 1, 1), bright=1.12)        # сверху наклейка на стене
@@ -81,6 +83,16 @@ JOBS += work('10', 'tochechnye-sanuzel', bright=1.18)
 JOBS += work('18', 'montazh-svetovoy-linii', pre=(0, 0.04, 1, 1), bright=1.06)
 JOBS += work('12', 'montazh-paryashchey', pre=(0, 0, 1, 0.69))  # внизу стремянка и инструмент
 JOBS += work('28', 'trek-lyustra-detskaya', bright=1.06)
+
+# вторая партия, 02.10.2026. Прихожая с треком (N + '28') заменила старый кадр
+# той же прихожей (код '29') — на нём трек было не разглядеть
+JOBS += work(N + '22.jpg', 'kuhnya-trek-ramka', anchor=0.45, pre=(0.18, 0, 1, 1))          # слева проём в картоне
+JOBS += work(N + '31.jpg', 'kuhnya-lyustra-podsvetka')
+JOBS += work(N + '33.jpg', 'svetovye-linii-bukvoy-g')
+JOBS += work(N + '18.jpg', 'lodzhiya-skrytyy-karniz', xanchor=1.0, pre=(0, 0, 1, 0.80))    # внизу пакеты на подоконнике
+JOBS += work(N + '16.jpg', 'mansarda-svetovye-linii', xanchor=1.0, pre=(0, 0, 0.885, 0.72))  # справа стремянка, внизу коробки
+JOBS += work(N + '28.jpg', 'prihozhaya-trek-tenevoy')
+JOBS += work(N + '21.jpg', 'komnata-trek-tenevoy', pre=(0, 0, 1, 0.94))                  # в углу плёнка
 
 # ---------------- запас под будущие посадочные ----------------
 JOBS += work('32', 'trek-podsvetka-stellazha')                  # горизонтальный кадр
