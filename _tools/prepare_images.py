@@ -6,16 +6,25 @@
   - при необходимости подрезает лишнее по краям (pre) — мусор в кадре, бутылки, стремянки
   - кропает под нужное соотношение; anchor задаёт, какую часть кадра оставить
     по вертикали (0 = верх, 1 = низ), xanchor — по горизонтали (0 = левый край)
-  - мягко вытягивает тени, правит яркость покадрово, добавляет резкость
-  - ресайзит и сохраняет в WebP
+  - уменьшает (никогда не увеличивает) и сохраняет в WebP с высоким качеством
 
-Портфолио: на каждую работу два файла — карточка 3:4 (600×800) и крупная версия
-для просмотра в portfolio/full/. Крупная под 3:4 не режется, к ней применяется
-только pre — в просмотре кадр виден целиком.
+Цвет, яркость и контраст НЕ трогаем. Раньше фото прогонялись через автоконтраст,
+подъём яркости и резкость — на светлых потолках это загоняло полутени в чёрный,
+выбивало белое в пересвет и вытаскивало артефакты сжатия Телеграма. Фото выглядели
+жёстче и «теряли качество». Камера телефона уже отдаёт нормально обработанный кадр.
+
+Портфолио: на каждую работу три файла —
+  portfolio/имя.webp       карточка 3:4, 600×800
+  portfolio/lg/имя.webp    та же карточка крупнее (до 960 px) — для чётких экранов
+                           телефонов, браузер берёт её сам через srcset
+  portfolio/full/имя.webp  крупная версия для просмотра: под 3:4 не режется,
+                           применяется только pre — кадр виден целиком
 
 Сертификаты: превью листа A4 для карточки (480 px) и крупная версия для просмотра
-в docs/full/. Цвета и контраст не трогаем — это документ, а не фото.
-Исходники — в img/_source/docs/; страницы из PDF отрисованы в JPG заранее.
+в docs/full/. Исходники — в img/_source/docs/; страницы из PDF отрисованы в JPG заранее.
+
+Исходники фото — сжатые Телеграмом (1280 px по длинной стороне). Для заметно лучшего
+качества нужны оригиналы с телефона, отправленные файлом, без сжатия.
 
 Запуск из корня проекта:  python _tools/prepare_images.py
 """
@@ -24,49 +33,44 @@ from PIL import Image, ImageOps, ImageEnhance
 
 SRC = 'img/_source'
 PORTFOLIO = 'img/portfolio'
-FULL = PORTFOLIO + '/full'
 DOCS = 'img/docs'
 ROOT = 'img'
 P = 'photo_2026-09-18_19-03-'      # первая партия фото: в work() передаётся только код, '07'
 N = 'photo_2026-10-02_'            # вторая партия: в work() — имя файла целиком
 
-# src      — имя исходника
-# out      — куда сохранить (путь от корня проекта)
-# ratio    — итоговое соотношение сторон; не задано — кадр не режется
-# anchor   — доля обрезки сверху при вертикальном кропе
-# xanchor  — доля обрезки слева при горизонтальном кропе
-# width    — ширина результата; не задана — остаётся исходная
-# bright   — множитель яркости (1.0 — без изменений)
-# pre      — предварительный кроп в долях (left, top, right, bottom)
-# sharp    — резкость (1.0 — без изменений)
-# quality  — качество сжатия
-# max_width — уменьшить до этой ширины, если исходник шире (не увеличивает)
-# plain    — без обработки цвета и контраста (документы)
+PHOTO_Q = 90                       # качество WebP для фото: ниже 88 гладкий потолок «плывёт»
+
+# src       — имя исходника
+# out       — куда сохранить (путь от корня проекта)
+# ratio     — итоговое соотношение сторон; не задано — кадр не режется
+# anchor    — доля обрезки сверху при вертикальном кропе
+# xanchor   — доля обрезки слева при горизонтальном кропе
+# width     — ширина результата (только уменьшение); не задана — остаётся исходная
+# pre       — предварительный кроп в долях (left, top, right, bottom)
+# sharp     — резкость (только превью документов, чтобы мелкий текст не плыл)
+# quality   — качество сжатия
 JOBS = [
     # ---------------- первый экран ----------------
-    # вертикальный кадр — для телефонов, фон под текст
-    dict(src=P + '21.jpg', out=ROOT + '/hero.webp',
-         ratio=(4, 5), anchor=0.30, width=900, bright=1.05),
+    # вертикальный кадр — для телефонов, фон под текст; в исходном размере
+    dict(src=P + '21.jpg', out=ROOT + '/hero.webp', ratio=(4, 5), anchor=0.30, quality=92),
 
-    # широкий кадр — для десктопа, тот же приём
-    dict(src=P + '07.jpg', out=ROOT + '/hero-wide.webp',
-         ratio=(16, 9), anchor=0.30, width=1800, bright=1.03),
+    # широкий кадр — для десктопа; исходник 1280 px, растягивать его в файле нет смысла
+    dict(src=P + '07.jpg', out=ROOT + '/hero-wide.webp', ratio=(16, 9), anchor=0.30, quality=92),
 
     # ---------------- превью для соцсетей ----------------
-    dict(src=P + '07.jpg', out=ROOT + '/og-cover.jpg',
-         ratio=(1200, 630), anchor=0.45, width=1200),
+    dict(src=P + '07.jpg', out=ROOT + '/og-cover.jpg', ratio=(1200, 630), anchor=0.45, width=1200, quality=88),
 ]
 
 
-def work(src, name, anchor=0.5, xanchor=0.5, pre=None, bright=1.0):
-    """Работа в портфолио: карточка 3:4 и крупная версия для просмотра.
+def work(src, name, anchor=0.5, xanchor=0.5, pre=None):
+    """Работа в портфолио: карточка, крупная карточка и версия для просмотра.
     src — код снимка первой партии ('07') или имя файла целиком."""
-    common = dict(src=src if src.endswith('.jpg') else P + src + '.jpg',
-                  pre=pre, bright=bright, sharp=1.15)
+    common = dict(src=src if src.endswith('.jpg') else P + src + '.jpg', pre=pre, quality=PHOTO_Q)
+    card = dict(common, ratio=(3, 4), anchor=anchor, xanchor=xanchor)
     return [
-        dict(common, out=PORTFOLIO + '/' + name + '.webp',
-             ratio=(3, 4), anchor=anchor, xanchor=xanchor, width=600, quality=84),
-        dict(common, out=FULL + '/' + name + '.webp', quality=82),
+        dict(card, out=PORTFOLIO + '/' + name + '.webp', width=600),
+        dict(card, out=PORTFOLIO + '/lg/' + name + '.webp', width=960),
+        dict(common, out=PORTFOLIO + '/full/' + name + '.webp'),
     ]
 
 
@@ -75,14 +79,14 @@ def work(src, name, anchor=0.5, xanchor=0.5, pre=None, bright=1.0):
 JOBS += work('07', 'trek-glyanec', xanchor=0.30)               # горизонтальный кадр: держим угол рамки трека
 JOBS += work('02', 'trek-karniz-vstavka', pre=(0, 0.08, 1, 1))  # сверху проём в потолке
 JOBS += work('16', 'tenevoy-profil-sanuzel')
-JOBS += work('09', 'svetovaya-liniya-glyanec', pre=(0, 0, 1, 0.80), bright=1.06)      # внизу доски на полу
-JOBS += work('20', 'paryashchiy-kuhnya', xanchor=0.35, pre=(0, 0, 1, 0.80), bright=1.16)  # внизу плёнка
-JOBS += work('23', 'paryashchiy-podsvetka', pre=(0, 0.07, 1, 1), bright=1.12)        # сверху наклейка на стене
+JOBS += work('09', 'svetovaya-liniya-glyanec', pre=(0, 0, 1, 0.80))                  # внизу доски на полу
+JOBS += work('20', 'paryashchiy-kuhnya', xanchor=0.35, pre=(0, 0, 1, 0.80))          # внизу плёнка
+JOBS += work('23', 'paryashchiy-podsvetka', pre=(0, 0.07, 1, 1))                     # сверху наклейка на стене
 JOBS += work('19', 'led-soty-barbershop', pre=(0, 0, 1, 0.97))  # снизу в кадр попал человек
-JOBS += work('10', 'tochechnye-sanuzel', bright=1.18)
-JOBS += work('18', 'montazh-svetovoy-linii', pre=(0, 0.04, 1, 1), bright=1.06)
+JOBS += work('10', 'tochechnye-sanuzel')
+JOBS += work('18', 'montazh-svetovoy-linii', pre=(0, 0.04, 1, 1))
 JOBS += work('12', 'montazh-paryashchey', pre=(0, 0, 1, 0.69))  # внизу стремянка и инструмент
-JOBS += work('28', 'trek-lyustra-detskaya', bright=1.06)
+JOBS += work('28', 'trek-lyustra-detskaya')
 
 # вторая партия, 02.10.2026. Прихожая с треком (N + '28') заменила старый кадр
 # той же прихожей (код '29') — на нём трек было не разглядеть
@@ -97,14 +101,14 @@ JOBS += work(N + '21.jpg', 'komnata-trek-tenevoy', pre=(0, 0, 1, 0.94))         
 # ---------------- запас под будущие посадочные ----------------
 JOBS += work('32', 'trek-podsvetka-stellazha')                  # горизонтальный кадр
 JOBS += work('24', 'trek-rgb-detskaya')
-JOBS += work('33', 'trek-kabinet', bright=1.06)
+JOBS += work('33', 'trek-kabinet')
 
 
 def doc(src, name, pre=None, thumb=True):
     """Документ: превью листа A4 для карточки и крупная версия для просмотра.
     Превью нужно только первой странице — остальные открываются листанием."""
-    common = dict(src='docs/' + src, pre=pre, plain=True)
-    jobs = [dict(common, out=DOCS + '/full/' + name + '.webp', max_width=1000, quality=72)]
+    common = dict(src='docs/' + src, pre=pre)
+    jobs = [dict(common, out=DOCS + '/full/' + name + '.webp', width=1000, quality=72)]
     if thumb:
         jobs.append(dict(common, out=DOCS + '/' + name + '.webp',
                          ratio=(1000, 1414), anchor=0.0, width=480, sharp=1.2, quality=80))
@@ -142,23 +146,7 @@ def crop_ratio(im, ratio, anchor, xanchor=0.5):
     return im.crop((0, top, w, top + new_h))
 
 
-def enhance(im, bright, sharp):
-    """Мягко вытягиваем тени, не трогая пересветы на белом полотне."""
-    try:
-        im = ImageOps.autocontrast(im, cutoff=(0.8, 0.0), preserve_tone=True)
-    except TypeError:                          # Pillow < 9.0
-        im = ImageOps.autocontrast(im, cutoff=1)
-    if bright != 1.0:
-        im = ImageEnhance.Brightness(im).enhance(bright)
-    im = ImageEnhance.Color(im).enhance(1.04)
-    im = ImageEnhance.Sharpness(im).enhance(sharp)
-    return im
-
-
 def main():
-    os.makedirs(FULL, exist_ok=True)
-    os.makedirs(DOCS + '/full', exist_ok=True)
-
     for job in JOBS:
         src = os.path.join(SRC, job['src'])
         if not os.path.exists(src):
@@ -170,23 +158,19 @@ def main():
             im = pre_crop(im, job['pre'])
         if job.get('ratio'):
             im = crop_ratio(im, job['ratio'], job.get('anchor', 0.5), job.get('xanchor', 0.5))
-        if job.get('width'):
+        if job.get('width') and im.size[0] > job['width']:   # только уменьшаем
             w = job['width']
             r = job.get('ratio') or im.size
             im = im.resize((w, int(round(w * r[1] / r[0]))), Image.LANCZOS)
-        if job.get('max_width') and im.size[0] > job['max_width']:
-            w = job['max_width']
-            im = im.resize((w, int(round(w * im.size[1] / im.size[0]))), Image.LANCZOS)
-        if not job.get('plain'):
-            im = enhance(im, job.get('bright', 1.0), job.get('sharp', 1.35))
-        elif job.get('sharp'):                 # превью документа: только чуть резкости, чтобы текст не плыл
+        if job.get('sharp'):
             im = ImageEnhance.Sharpness(im).enhance(job['sharp'])
 
         out = job['out']
+        os.makedirs(os.path.dirname(out), exist_ok=True)
         if out.endswith('.jpg'):
-            im.save(out, 'JPEG', quality=job.get('quality', 86), optimize=True, progressive=True)
+            im.save(out, 'JPEG', quality=job.get('quality', 88), subsampling=0, optimize=True, progressive=True)
         else:
-            im.save(out, 'WEBP', quality=job.get('quality', 82), method=6)
+            im.save(out, 'WEBP', quality=job.get('quality', PHOTO_Q), method=6)
 
         print('%-52s %sx%s  %d КБ' % (out, im.size[0], im.size[1], os.path.getsize(out) // 1024))
 

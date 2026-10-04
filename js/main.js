@@ -396,6 +396,7 @@
 
   function applyPlaceholder(img) {
     img.removeAttribute('data-full');       // крупной версии тоже нет — в просмотре будет заглушка
+    img.removeAttribute('srcset');          // иначе браузер возьмёт srcset и заглушку не покажет
     img.src = placeholder(img.dataset.ph, +img.getAttribute('width') || 600, +img.getAttribute('height') || 450);
   }
 
