@@ -37,6 +37,7 @@ DOCS = 'img/docs'
 ROOT = 'img'
 P = 'photo_2026-09-18_19-03-'      # первая партия фото: в work() передаётся только код, '07'
 N = 'photo_2026-10-02_'            # вторая партия: в work() — имя файла целиком
+T = 'photo_2026-10-10_'            # третья партия
 
 PHOTO_Q = 90                       # качество WebP для фото: ниже 88 гладкий потолок «плывёт»
 
@@ -47,6 +48,7 @@ PHOTO_Q = 90                       # качество WebP для фото: ни
 # xanchor   — доля обрезки слева при горизонтальном кропе
 # width     — ширина результата (только уменьшение); не задана — остаётся исходная
 # pre       — предварительный кроп в долях (left, top, right, bottom)
+# rotate    — поворот против часовой, градусы (кадр потолка снизу можно повернуть)
 # sharp     — резкость (только превью документов, чтобы мелкий текст не плыл)
 # quality   — качество сжатия
 JOBS = [
@@ -62,10 +64,10 @@ JOBS = [
 ]
 
 
-def work(src, name, anchor=0.5, xanchor=0.5, pre=None):
+def work(src, name, anchor=0.5, xanchor=0.5, pre=None, rotate=0):
     """Работа в портфолио: карточка, крупная карточка и версия для просмотра.
     src — код снимка первой партии ('07') или имя файла целиком."""
-    common = dict(src=src if src.endswith('.jpg') else P + src + '.jpg', pre=pre, quality=PHOTO_Q)
+    common = dict(src=src if src.endswith('.jpg') else P + src + '.jpg', pre=pre, rotate=rotate, quality=PHOTO_Q)
     card = dict(common, ratio=(3, 4), anchor=anchor, xanchor=xanchor)
     return [
         dict(card, out=PORTFOLIO + '/' + name + '.webp', width=600),
@@ -92,11 +94,26 @@ JOBS += work('28', 'trek-lyustra-detskaya')
 # той же прихожей (код '29') — на нём трек было не разглядеть
 JOBS += work(N + '22.jpg', 'kuhnya-trek-ramka', anchor=0.45, pre=(0.18, 0, 1, 1))          # слева проём в картоне
 JOBS += work(N + '31.jpg', 'kuhnya-lyustra-podsvetka')
-JOBS += work(N + '33.jpg', 'svetovye-linii-bukvoy-g')
+# та же комната, что на T + '39' (монтаж), — готовый вид; повёрнут, чтобы совпадал ракурс
+JOBS += work(T + '40.jpg', 'svetovye-linii-bukvoy-g', rotate=90)
 JOBS += work(N + '18.jpg', 'lodzhiya-skrytyy-karniz', xanchor=1.0, pre=(0, 0, 1, 0.80))    # внизу пакеты на подоконнике
 JOBS += work(N + '16.jpg', 'mansarda-svetovye-linii', xanchor=1.0, pre=(0, 0, 0.885, 0.72))  # справа стремянка, внизу коробки
 JOBS += work(N + '28.jpg', 'prihozhaya-trek-tenevoy')
 JOBS += work(N + '21.jpg', 'komnata-trek-tenevoy', pre=(0, 0, 1, 0.94))                  # в углу плёнка
+
+# третья партия, 10.10.2026 — заказчик сам выбрал работы и порядок на сайте
+JOBS += work(T + '37.jpg', 'prihozhaya-tenevoy-spoty')
+JOBS += work(T + '39.jpg', 'montazh-svetovyh-liniy')
+JOBS += work(T + '42.jpg', 'komnata-trek-polki')
+JOBS += work(T + '43.jpg', 'liniya-bukvoy-g-svetilnik')
+JOBS += work(T + '44.jpg', 'glyanec-lineynye-svetilniki')
+JOBS += work(T + '45.jpg', 'trek-bukvoy-g')
+JOBS += work(T + '46.jpg', 'dva-treka-glyanec')
+JOBS += work(T + '47.jpg', 'sanuzel-spoty-liniya', xanchor=0.45)  # горизонтальный кадр
+JOBS += work(T + '48.jpg', 'mansardnoe-okno-karniz')
+JOBS += work(T + '49.jpg', 'dve-linii-tenevoy')
+JOBS += work(T + '50.jpg', 'vannaya-lyustra-kolco')
+JOBS += work(T + '52.jpg', 'komnata-skrytye-karnizy')
 
 # ---------------- запас под будущие посадочные ----------------
 JOBS += work('32', 'trek-podsvetka-stellazha')                  # горизонтальный кадр
@@ -154,6 +171,8 @@ def main():
             continue
 
         im = ImageOps.exif_transpose(Image.open(src)).convert('RGB')
+        if job.get('rotate'):
+            im = im.rotate(job['rotate'], expand=True)
         if job.get('pre'):
             im = pre_crop(im, job['pre'])
         if job.get('ratio'):

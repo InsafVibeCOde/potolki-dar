@@ -30,7 +30,7 @@ if (location.hostname.endsWith('github.io')) {
 
 <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="fonts/onest-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="css/style.css?v=21">
+<link rel="stylesheet" href="css/style.css?v=22">
 
 <script type="application/ld+json">
 {
@@ -416,28 +416,28 @@ if (location.hostname.endsWith('github.io')) {
       <button class="filter" type="button" data-filter="soty" aria-pressed="false">LED-соты</button>
     </div>
 
-    <!-- Порядок = порядок показа: первые 8 видно сразу (на планшете 9),
+    <!-- Порядок задал заказчик (10.10.2026) — не менять. Первые 8 видно сразу (на планшете 9),
          остальные открывает кнопка «Показать ещё». На телефоне — лента целиком. -->
     <div class="works" id="works">
-      <button class="work" type="button" data-tags="track" aria-label="Открыть фото: Кухня с треком-рамкой">
+      <button class="work" type="button" data-tags="floating" aria-label="Открыть фото: Парящий потолок с подсветкой">
         <span class="work__media">
-          <img src="img/portfolio/kuhnya-trek-ramka.webp" srcset="img/portfolio/kuhnya-trek-ramka.webp 600w, img/portfolio/lg/kuhnya-trek-ramka.webp 788w" sizes="(max-width: 639px) 78vw, (max-width: 1023px) 31vw, 270px" data-full="img/portfolio/full/kuhnya-trek-ramka.webp" width="600" height="800" loading="lazy" alt="Встроенная трековая система рамкой на натяжном потолке кухни, Ижевск" data-ph="Кухня с треком-рамкой">
+          <img src="img/portfolio/paryashchiy-podsvetka.webp" srcset="img/portfolio/paryashchiy-podsvetka.webp 600w, img/portfolio/lg/paryashchiy-podsvetka.webp 893w" sizes="(max-width: 639px) 78vw, (max-width: 1023px) 31vw, 270px" data-full="img/portfolio/full/paryashchiy-podsvetka.webp" width="600" height="800" loading="lazy" alt="Парящий потолок с подсветкой по всему периметру, матовое полотно, Ижевск" data-ph="Парящий потолок с подсветкой">
           <span class="work__zoom" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span>
         </span>
         <span class="work__body">
-          <span class="work__title">Кухня с треком-рамкой</span>
-          <span class="work__meta">Встроенный трек рамкой · линейные светильники</span>
+          <span class="work__title">Парящий потолок с подсветкой</span>
+          <span class="work__meta">Свет по всему периметру · матовое полотно</span>
         </span>
       </button>
 
-      <button class="work" type="button" data-tags="line" aria-label="Открыть фото: Световые линии буквой Г">
+      <button class="work" type="button" data-tags="shadow" aria-label="Открыть фото: Прихожая с теневым профилем">
         <span class="work__media">
-          <img src="img/portfolio/svetovye-linii-bukvoy-g.webp" srcset="img/portfolio/svetovye-linii-bukvoy-g.webp 600w, img/portfolio/lg/svetovye-linii-bukvoy-g.webp 960w" sizes="(max-width: 639px) 78vw, (max-width: 1023px) 31vw, 270px" data-full="img/portfolio/full/svetovye-linii-bukvoy-g.webp" width="600" height="800" loading="lazy" alt="Две Г-образные световые линии на матовом натяжном потолке, Ижевск" data-ph="Световые линии буквой Г">
+          <img src="img/portfolio/prihozhaya-tenevoy-spoty.webp" srcset="img/portfolio/prihozhaya-tenevoy-spoty.webp 600w, img/portfolio/lg/prihozhaya-tenevoy-spoty.webp 960w" sizes="(max-width: 639px) 78vw, (max-width: 1023px) 31vw, 270px" data-full="img/portfolio/full/prihozhaya-tenevoy-spoty.webp" width="600" height="800" loading="lazy" alt="Натяжной потолок с теневым профилем и точечными светильниками в прихожей, Ижевск" data-ph="Прихожая с теневым профилем">
           <span class="work__zoom" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span>
         </span>
         <span class="work__body">
-          <span class="work__title">Световые линии буквой Г</span>
-          <span class="work__meta">Две Г-образные линии и прямая вдоль стены</span>
+          <span class="work__title">Прихожая с теневым профилем</span>
+          <span class="work__meta">Теневой шов по контуру · точечные светильники</span>
         </span>
       </button>
 
@@ -452,47 +452,25 @@ if (location.hostname.endsWith('github.io')) {
         </span>
       </button>
 
-      <button class="work" type="button" data-tags="track" aria-label="Открыть фото: Трековая система на глянце">
+      <button class="work" type="button" data-tags="line" aria-label="Открыть фото: Монтаж световых линий">
         <span class="work__media">
-          <img src="img/portfolio/trek-glyanec.webp" srcset="img/portfolio/trek-glyanec.webp 600w, img/portfolio/lg/trek-glyanec.webp 720w" sizes="(max-width: 639px) 78vw, (max-width: 1023px) 31vw, 270px" data-full="img/portfolio/full/trek-glyanec.webp" width="600" height="800" loading="lazy" alt="Натяжной потолок с магнитной трековой системой на глянцевом полотне, Ижевск" data-ph="Трековая система на глянце">
+          <img src="img/portfolio/montazh-svetovyh-liniy.webp" srcset="img/portfolio/montazh-svetovyh-liniy.webp 600w, img/portfolio/lg/montazh-svetovyh-liniy.webp 960w" sizes="(max-width: 639px) 78vw, (max-width: 1023px) 31vw, 270px" data-full="img/portfolio/full/montazh-svetovyh-liniy.webp" width="600" height="800" loading="lazy" alt="Монтаж профилей световых линий на черновом потолке до натяжки полотна, Ижевск" data-ph="Монтаж световых линий">
           <span class="work__zoom" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span>
         </span>
         <span class="work__body">
-          <span class="work__title">Трековая система на глянце</span>
-          <span class="work__meta">Магнитный шинопровод · Г-образная раскладка</span>
+          <span class="work__title">Монтаж световых линий</span>
+          <span class="work__meta">Профили линий на черновом потолке до натяжки</span>
         </span>
       </button>
 
-      <button class="work" type="button" data-tags="cornice" aria-label="Открыть фото: Лоджия со скрытым карнизом">
+      <button class="work" type="button" data-tags="line" aria-label="Открыть фото: Световые линии буквой Г">
         <span class="work__media">
-          <img src="img/portfolio/lodzhiya-skrytyy-karniz.webp" srcset="img/portfolio/lodzhiya-skrytyy-karniz.webp 600w, img/portfolio/lg/lodzhiya-skrytyy-karniz.webp 768w" sizes="(max-width: 639px) 78vw, (max-width: 1023px) 31vw, 270px" data-full="img/portfolio/full/lodzhiya-skrytyy-karniz.webp" width="600" height="800" loading="lazy" alt="Скрытый карниз с подсветкой и накладные светильники на натяжном потолке лоджии, Ижевск" data-ph="Лоджия со скрытым карнизом">
+          <img src="img/portfolio/svetovye-linii-bukvoy-g.webp" srcset="img/portfolio/svetovye-linii-bukvoy-g.webp 600w, img/portfolio/lg/svetovye-linii-bukvoy-g.webp 960w" sizes="(max-width: 639px) 78vw, (max-width: 1023px) 31vw, 270px" data-full="img/portfolio/full/svetovye-linii-bukvoy-g.webp" width="600" height="800" loading="lazy" alt="Две Г-образные световые линии на матовом натяжном потолке, Ижевск" data-ph="Световые линии буквой Г">
           <span class="work__zoom" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span>
         </span>
         <span class="work__body">
-          <span class="work__title">Лоджия со скрытым карнизом</span>
-          <span class="work__meta">Ниша под шторы с подсветкой · накладные светильники</span>
-        </span>
-      </button>
-
-      <button class="work" type="button" data-tags="line" aria-label="Открыть фото: Мансарда со световыми линиями">
-        <span class="work__media">
-          <img src="img/portfolio/mansarda-svetovye-linii.webp" srcset="img/portfolio/mansarda-svetovye-linii.webp 600w, img/portfolio/lg/mansarda-svetovye-linii.webp 691w" sizes="(max-width: 639px) 78vw, (max-width: 1023px) 31vw, 270px" data-full="img/portfolio/full/mansarda-svetovye-linii.webp" width="600" height="800" loading="lazy" alt="Световые линии на натяжном потолке мансарды со скатами, Ижевск" data-ph="Мансарда со световыми линиями">
-          <span class="work__zoom" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span>
-        </span>
-        <span class="work__body">
-          <span class="work__title">Мансарда со световыми линиями</span>
-          <span class="work__meta">Г-образные линии на скатах · мансардные окна</span>
-        </span>
-      </button>
-
-      <button class="work" type="button" data-tags="track shadow" aria-label="Открыть фото: Прихожая сложной формы">
-        <span class="work__media">
-          <img src="img/portfolio/prihozhaya-trek-tenevoy.webp" srcset="img/portfolio/prihozhaya-trek-tenevoy.webp 600w, img/portfolio/lg/prihozhaya-trek-tenevoy.webp 960w" sizes="(max-width: 639px) 78vw, (max-width: 1023px) 31vw, 270px" data-full="img/portfolio/full/prihozhaya-trek-tenevoy.webp" width="600" height="800" loading="lazy" alt="Натяжной потолок сложной формы с теневым профилем и встроенным треком в прихожей, Ижевск" data-ph="Прихожая сложной формы">
-          <span class="work__zoom" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span>
-        </span>
-        <span class="work__body">
-          <span class="work__title">Прихожая сложной формы</span>
-          <span class="work__meta">Теневой профиль по контуру · трек со спотами</span>
+          <span class="work__title">Световые линии буквой Г</span>
+          <span class="work__meta">Две Г-образные линии и прямая вдоль стены</span>
         </span>
       </button>
 
@@ -507,113 +485,124 @@ if (location.hostname.endsWith('github.io')) {
         </span>
       </button>
 
-      <button class="work" type="button" data-tags="shadow" aria-label="Открыть фото: Санузел с теневым профилем">
+      <button class="work" type="button" data-tags="track" aria-label="Открыть фото: Трек вдоль стеллажей">
         <span class="work__media">
-          <img src="img/portfolio/tenevoy-profil-sanuzel.webp" srcset="img/portfolio/tenevoy-profil-sanuzel.webp 600w, img/portfolio/lg/tenevoy-profil-sanuzel.webp 960w" sizes="(max-width: 639px) 78vw, (max-width: 1023px) 31vw, 270px" data-full="img/portfolio/full/tenevoy-profil-sanuzel.webp" width="600" height="800" loading="lazy" alt="Натяжной потолок с теневым профилем EuroKraab в санузле, Ижевск" data-ph="Санузел с теневым профилем">
+          <img src="img/portfolio/komnata-trek-polki.webp" srcset="img/portfolio/komnata-trek-polki.webp 600w, img/portfolio/lg/komnata-trek-polki.webp 960w" sizes="(max-width: 639px) 78vw, (max-width: 1023px) 31vw, 270px" data-full="img/portfolio/full/komnata-trek-polki.webp" width="600" height="800" loading="lazy" alt="Встроенный чёрный трек со спотами вдоль стеллажей, Ижевск" data-ph="Трек вдоль стеллажей">
           <span class="work__zoom" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span>
         </span>
         <span class="work__body">
-          <span class="work__title">Санузел с теневым профилем</span>
-          <span class="work__meta">Теневой шов по периметру · 4 точечных светильника</span>
+          <span class="work__title">Трек вдоль стеллажей</span>
+          <span class="work__meta">Чёрный трек буквой Г · споты</span>
         </span>
       </button>
 
-      <button class="work" type="button" data-tags="track shadow" aria-label="Открыть фото: Комната с длинным треком">
+      <button class="work" type="button" data-tags="line" aria-label="Открыть фото: Световая линия буквой Г">
         <span class="work__media">
-          <img src="img/portfolio/komnata-trek-tenevoy.webp" srcset="img/portfolio/komnata-trek-tenevoy.webp 600w, img/portfolio/lg/komnata-trek-tenevoy.webp 902w" sizes="(max-width: 639px) 78vw, (max-width: 1023px) 31vw, 270px" data-full="img/portfolio/full/komnata-trek-tenevoy.webp" width="600" height="800" loading="lazy" alt="Встроенный чёрный трек со спотами и теневой профиль по периметру комнаты, Ижевск" data-ph="Комната с длинным треком">
+          <img src="img/portfolio/liniya-bukvoy-g-svetilnik.webp" srcset="img/portfolio/liniya-bukvoy-g-svetilnik.webp 600w, img/portfolio/lg/liniya-bukvoy-g-svetilnik.webp 960w" sizes="(max-width: 639px) 78vw, (max-width: 1023px) 31vw, 270px" data-full="img/portfolio/full/liniya-bukvoy-g-svetilnik.webp" width="600" height="800" loading="lazy" alt="Г-образная световая линия и накладной светильник на натяжном потолке, Ижевск" data-ph="Световая линия буквой Г">
           <span class="work__zoom" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span>
         </span>
         <span class="work__body">
-          <span class="work__title">Комната с длинным треком</span>
-          <span class="work__meta">Чёрный трек со спотами · теневой профиль</span>
+          <span class="work__title">Световая линия буквой Г</span>
+          <span class="work__meta">Линия вдоль стены · светильник на три плафона</span>
         </span>
       </button>
 
-      <button class="work" type="button" data-tags="track cornice shadow" aria-label="Открыть фото: Холл с трековым контуром">
+      <button class="work" type="button" data-tags="track cornice" aria-label="Открыть фото: Глянец с линейным светом">
         <span class="work__media">
-          <img src="img/portfolio/trek-karniz-vstavka.webp" srcset="img/portfolio/trek-karniz-vstavka.webp 600w, img/portfolio/lg/trek-karniz-vstavka.webp 884w" sizes="(max-width: 639px) 78vw, (max-width: 1023px) 31vw, 270px" data-full="img/portfolio/full/trek-karniz-vstavka.webp" width="600" height="800" loading="lazy" alt="Замкнутый контур трековой системы, скрытый карниз и чёрная вставка по периметру, Ижевск" data-ph="Холл с трековым контуром">
+          <img src="img/portfolio/glyanec-lineynye-svetilniki.webp" srcset="img/portfolio/glyanec-lineynye-svetilniki.webp 600w, img/portfolio/lg/glyanec-lineynye-svetilniki.webp 960w" sizes="(max-width: 639px) 78vw, (max-width: 1023px) 31vw, 270px" data-full="img/portfolio/full/glyanec-lineynye-svetilniki.webp" width="600" height="800" loading="lazy" alt="Глянцевый натяжной потолок с трековыми линейными светильниками, Ижевск" data-ph="Глянец с линейным светом">
           <span class="work__zoom" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span>
         </span>
         <span class="work__body">
-          <span class="work__title">Холл с трековым контуром</span>
-          <span class="work__meta">Замкнутая рамка трека · скрытый карниз · чёрная вставка</span>
+          <span class="work__title">Глянец с линейным светом</span>
+          <span class="work__meta">Трек с линейными светильниками · подсветка у окна</span>
         </span>
       </button>
 
-      <button class="work" type="button" data-tags="floating" aria-label="Открыть фото: Парящий потолок с подсветкой">
+      <button class="work" type="button" data-tags="track" aria-label="Открыть фото: Трек буквой Г">
         <span class="work__media">
-          <img src="img/portfolio/paryashchiy-podsvetka.webp" srcset="img/portfolio/paryashchiy-podsvetka.webp 600w, img/portfolio/lg/paryashchiy-podsvetka.webp 893w" sizes="(max-width: 639px) 78vw, (max-width: 1023px) 31vw, 270px" data-full="img/portfolio/full/paryashchiy-podsvetka.webp" width="600" height="800" loading="lazy" alt="Парящий потолок с подсветкой по всему периметру, матовое полотно, Ижевск" data-ph="Парящий потолок с подсветкой">
+          <img src="img/portfolio/trek-bukvoy-g.webp" srcset="img/portfolio/trek-bukvoy-g.webp 600w, img/portfolio/lg/trek-bukvoy-g.webp 960w" sizes="(max-width: 639px) 78vw, (max-width: 1023px) 31vw, 270px" data-full="img/portfolio/full/trek-bukvoy-g.webp" width="600" height="800" loading="lazy" alt="Г-образный встроенный трек с линейными светильниками, Ижевск" data-ph="Трек буквой Г">
           <span class="work__zoom" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span>
         </span>
         <span class="work__body">
-          <span class="work__title">Парящий потолок с подсветкой</span>
-          <span class="work__meta">Свет по всему периметру · матовое полотно</span>
+          <span class="work__title">Трек буквой Г</span>
+          <span class="work__meta">Встроенный трек с линейными светильниками</span>
         </span>
       </button>
 
-      <button class="work" type="button" data-tags="line" aria-label="Открыть фото: Световая линия на глянце">
+      <button class="work" type="button" data-tags="track cornice" aria-label="Открыть фото: Два параллельных трека">
         <span class="work__media">
-          <img src="img/portfolio/svetovaya-liniya-glyanec.webp" srcset="img/portfolio/svetovaya-liniya-glyanec.webp 600w, img/portfolio/lg/svetovaya-liniya-glyanec.webp 768w" sizes="(max-width: 639px) 78vw, (max-width: 1023px) 31vw, 270px" data-full="img/portfolio/full/svetovaya-liniya-glyanec.webp" width="600" height="800" loading="lazy" alt="Прямая световая линия с поликарбонатным рассеивателем на глянцевом потолке, Ижевск" data-ph="Световая линия на глянце">
+          <img src="img/portfolio/dva-treka-glyanec.webp" srcset="img/portfolio/dva-treka-glyanec.webp 600w, img/portfolio/lg/dva-treka-glyanec.webp 960w" sizes="(max-width: 639px) 78vw, (max-width: 1023px) 31vw, 270px" data-full="img/portfolio/full/dva-treka-glyanec.webp" width="600" height="800" loading="lazy" alt="Два параллельных трека с линейными светильниками на глянцевом потолке, Ижевск" data-ph="Два параллельных трека">
           <span class="work__zoom" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span>
         </span>
         <span class="work__body">
-          <span class="work__title">Световая линия на глянце</span>
-          <span class="work__meta">Ровный свет без точек и засветов</span>
+          <span class="work__title">Два параллельных трека</span>
+          <span class="work__meta">Линейные светильники на глянце · ниша под шторы</span>
         </span>
       </button>
 
-      <button class="work" type="button" data-tags="floating cornice" aria-label="Открыть фото: Кухня с парящим потолком">
+      <button class="work" type="button" data-tags="line shadow" aria-label="Открыть фото: Санузел со световой линией">
         <span class="work__media">
-          <img src="img/portfolio/paryashchiy-kuhnya.webp" srcset="img/portfolio/paryashchiy-kuhnya.webp 600w, img/portfolio/lg/paryashchiy-kuhnya.webp 768w" sizes="(max-width: 639px) 78vw, (max-width: 1023px) 31vw, 270px" data-full="img/portfolio/full/paryashchiy-kuhnya.webp" width="600" height="800" loading="lazy" alt="Парящий натяжной потолок с контурной подсветкой и подвесной люстрой на кухне, Ижевск" data-ph="Кухня с парящим потолком">
+          <img src="img/portfolio/sanuzel-spoty-liniya.webp" srcset="img/portfolio/sanuzel-spoty-liniya.webp 600w, img/portfolio/lg/sanuzel-spoty-liniya.webp 720w" sizes="(max-width: 639px) 78vw, (max-width: 1023px) 31vw, 270px" data-full="img/portfolio/full/sanuzel-spoty-liniya.webp" width="600" height="800" loading="lazy" alt="Натяжной потолок в санузле с точечными светильниками и световой линией, Ижевск" data-ph="Санузел со световой линией">
           <span class="work__zoom" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span>
         </span>
         <span class="work__body">
-          <span class="work__title">Кухня с парящим потолком</span>
-          <span class="work__meta">Контурная подсветка · люстра · трековые споты</span>
+          <span class="work__title">Санузел со световой линией</span>
+          <span class="work__meta">Четыре светильника · линия в углу · теневой профиль</span>
         </span>
       </button>
 
-      <button class="work" type="button" data-tags="cornice" aria-label="Открыть фото: Санузел под ключ">
+      <button class="work" type="button" data-tags="cornice" aria-label="Открыть фото: Комната с мансардным окном">
         <span class="work__media">
-          <img src="img/portfolio/tochechnye-sanuzel.webp" srcset="img/portfolio/tochechnye-sanuzel.webp 600w, img/portfolio/lg/tochechnye-sanuzel.webp 960w" sizes="(max-width: 639px) 78vw, (max-width: 1023px) 31vw, 270px" data-full="img/portfolio/full/tochechnye-sanuzel.webp" width="600" height="800" loading="lazy" alt="Натяжной потолок в санузле с точечными светильниками и подсветкой ниши, Ижевск" data-ph="Санузел под ключ">
+          <img src="img/portfolio/mansardnoe-okno-karniz.webp" srcset="img/portfolio/mansardnoe-okno-karniz.webp 600w, img/portfolio/lg/mansardnoe-okno-karniz.webp 960w" sizes="(max-width: 639px) 78vw, (max-width: 1023px) 31vw, 270px" data-full="img/portfolio/full/mansardnoe-okno-karniz.webp" width="600" height="800" loading="lazy" alt="Натяжной потолок со скрытым карнизом с подсветкой у мансардного окна, Ижевск" data-ph="Комната с мансардным окном">
           <span class="work__zoom" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span>
         </span>
         <span class="work__body">
-          <span class="work__title">Санузел под ключ</span>
-          <span class="work__meta">Точечные светильники · подсветка ниши</span>
+          <span class="work__title">Комната с мансардным окном</span>
+          <span class="work__meta">Скрытый карниз с подсветкой у окна</span>
         </span>
       </button>
 
-      <button class="work" type="button" data-tags="track" aria-label="Открыть фото: Детская с трековым светом">
+      <button class="work" type="button" data-tags="line shadow" aria-label="Открыть фото: Две световые линии">
         <span class="work__media">
-          <img src="img/portfolio/trek-lyustra-detskaya.webp" srcset="img/portfolio/trek-lyustra-detskaya.webp 600w, img/portfolio/lg/trek-lyustra-detskaya.webp 960w" sizes="(max-width: 639px) 78vw, (max-width: 1023px) 31vw, 270px" data-full="img/portfolio/full/trek-lyustra-detskaya.webp" width="600" height="800" loading="lazy" alt="Натяжной потолок в детской с трековыми спотами и люстрой, Ижевск" data-ph="Детская с трековым светом">
+          <img src="img/portfolio/dve-linii-tenevoy.webp" srcset="img/portfolio/dve-linii-tenevoy.webp 600w, img/portfolio/lg/dve-linii-tenevoy.webp 960w" sizes="(max-width: 639px) 78vw, (max-width: 1023px) 31vw, 270px" data-full="img/portfolio/full/dve-linii-tenevoy.webp" width="600" height="800" loading="lazy" alt="Две параллельные световые линии и теневой профиль на натяжном потолке, Ижевск" data-ph="Две световые линии">
           <span class="work__zoom" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span>
         </span>
         <span class="work__body">
-          <span class="work__title">Детская с трековым светом</span>
-          <span class="work__meta">Трек со спотами · люстра-самолёт</span>
+          <span class="work__title">Две световые линии</span>
+          <span class="work__meta">Параллельные линии · теневой профиль</span>
         </span>
       </button>
 
-      <button class="work" type="button" data-tags="line" aria-label="Открыть фото: Монтаж световой линии">
+      <button class="work" type="button" data-tags="floating" aria-label="Открыть фото: Ванная с люстрой-кольцом">
         <span class="work__media">
-          <img src="img/portfolio/montazh-svetovoy-linii.webp" srcset="img/portfolio/montazh-svetovoy-linii.webp 600w, img/portfolio/lg/montazh-svetovoy-linii.webp 922w" sizes="(max-width: 639px) 78vw, (max-width: 1023px) 31vw, 270px" data-full="img/portfolio/full/montazh-svetovoy-linii.webp" width="600" height="800" loading="lazy" alt="Монтаж П-образной световой линии на черновом потолке до натяжки полотна, Ижевск" data-ph="Монтаж световой линии">
+          <img src="img/portfolio/vannaya-lyustra-kolco.webp" srcset="img/portfolio/vannaya-lyustra-kolco.webp 600w, img/portfolio/lg/vannaya-lyustra-kolco.webp 960w" sizes="(max-width: 639px) 78vw, (max-width: 1023px) 31vw, 270px" data-full="img/portfolio/full/vannaya-lyustra-kolco.webp" width="600" height="800" loading="lazy" alt="Натяжной потолок с контурной подсветкой и люстрой-кольцом в ванной, Ижевск" data-ph="Ванная с люстрой-кольцом">
           <span class="work__zoom" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span>
         </span>
         <span class="work__body">
-          <span class="work__title">Монтаж световой линии</span>
-          <span class="work__meta">П-образная линия до натяжки полотна</span>
+          <span class="work__title">Ванная с люстрой-кольцом</span>
+          <span class="work__meta">Контурная подсветка · подвесная люстра</span>
         </span>
       </button>
 
-      <button class="work" type="button" data-tags="line floating" aria-label="Открыть фото: Монтаж парящей конструкции">
+      <button class="work" type="button" data-tags="line" aria-label="Открыть фото: Мансарда со световыми линиями">
         <span class="work__media">
-          <img src="img/portfolio/montazh-paryashchey.webp" srcset="img/portfolio/montazh-paryashchey.webp 600w, img/portfolio/lg/montazh-paryashchey.webp 662w" sizes="(max-width: 639px) 78vw, (max-width: 1023px) 31vw, 270px" data-full="img/portfolio/full/montazh-paryashchey.webp" width="600" height="800" loading="lazy" alt="Монтаж парящей конструкции со светодиодной подсветкой по контуру, Ижевск" data-ph="Монтаж парящей конструкции">
+          <img src="img/portfolio/mansarda-svetovye-linii.webp" srcset="img/portfolio/mansarda-svetovye-linii.webp 600w, img/portfolio/lg/mansarda-svetovye-linii.webp 691w" sizes="(max-width: 639px) 78vw, (max-width: 1023px) 31vw, 270px" data-full="img/portfolio/full/mansarda-svetovye-linii.webp" width="600" height="800" loading="lazy" alt="Световые линии на натяжном потолке мансарды со скатами, Ижевск" data-ph="Мансарда со световыми линиями">
           <span class="work__zoom" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span>
         </span>
         <span class="work__body">
-          <span class="work__title">Монтаж парящей конструкции</span>
-          <span class="work__meta">Профиль с подсветкой по контуру</span>
+          <span class="work__title">Мансарда со световыми линиями</span>
+          <span class="work__meta">Г-образные линии на скатах · мансардные окна</span>
+        </span>
+      </button>
+
+      <button class="work" type="button" data-tags="cornice shadow" aria-label="Открыть фото: Комната со скрытыми карнизами">
+        <span class="work__media">
+          <img src="img/portfolio/komnata-skrytye-karnizy.webp" srcset="img/portfolio/komnata-skrytye-karnizy.webp 600w, img/portfolio/lg/komnata-skrytye-karnizy.webp 960w" sizes="(max-width: 639px) 78vw, (max-width: 1023px) 31vw, 270px" data-full="img/portfolio/full/komnata-skrytye-karnizy.webp" width="600" height="800" loading="lazy" alt="Натяжной потолок со скрытыми карнизами и встроенными светильниками, Ижевск" data-ph="Комната со скрытыми карнизами">
+          <span class="work__zoom" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3M11 8v6M8 11h6"/></svg></span>
+        </span>
+        <span class="work__body">
+          <span class="work__title">Комната со скрытыми карнизами</span>
+          <span class="work__meta">Ниши под шторы · встроенные светильники</span>
         </span>
       </button>
     </div>
@@ -1089,7 +1078,7 @@ if (location.hostname.endsWith('github.io')) {
   </figure>
 </div>
 
-<script src="js/main.js?v=21" defer></script>
-<script src="js/calc.js?v=21" defer></script>
+<script src="js/main.js?v=22" defer></script>
+<script src="js/calc.js?v=22" defer></script>
 </body>
 </html>
